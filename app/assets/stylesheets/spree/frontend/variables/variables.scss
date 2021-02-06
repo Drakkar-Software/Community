@@ -1,0 +1,26 @@
+// Ruler archetype colors:
+// light grey: #4e5e6b
+// dark grey: #0a1117
+// blue-grey: #20404b
+// light blue: #3a757e
+// dark red: #7d0c10
+$primary-color: #7d0c10;
+$secondary-color: #20404b;
+$primary-background: #0a1117;
+$secondary-background: #3a757e;
+$input-background: #4e5e6b;
+$font-color: #ffffff;
+$font-family: "Montserrat", sans-serif;
+$header-font-color: $font-color;
+$header-background: $primary-background;
+$meganav-font-color: $font-color;
+$meganav-background: $primary-background;
+$footer-font-color: $font-color;
+$footer-background: $primary-background;
+$secondary-font-color: $font-color;
+$global-border-style: #7d0c10;
+$second-global-border: #3a757e;
+$spree-header-max-width: 1440px;
+$spree-header-mobile-height: 50px;
+$spree-header-tablet-height: 75px;
+$spree-header-desktop-height: 75px;
