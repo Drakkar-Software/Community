@@ -10,7 +10,7 @@
 # In order to initialize a setting do:
 # config.setting_name = 'new value'
 Spree.config do |config|
-  config.logo = "octobot.png"
+  config.logo = 'octobot.png'
   config.allow_guest_checkout = false
   # Example:
   # Uncomment to stop tracking inventory levels in the application
@@ -33,4 +33,4 @@ end
 
 # Spree::Api::Dependencies.storefront_cart_serializer = 'MyRailsApp::CartSerializer'
 
-Spree.user_class = "Spree::User"
+Spree.user_class = 'Spree::User'

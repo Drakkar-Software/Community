@@ -1,3 +1,4 @@
+# rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
 module Community::Spree
   module AbilityDecorator
     def initialize(user)
@@ -40,15 +41,16 @@ module Community::Spree
         can :create, ::Spree::Review
         can :create, ::Spree::FeedbackReview
 
-        if Engines.exists? "Spree::Credits"
+        if Engines.exists? 'Spree::Credits'
           can :read, ::Spree::Microtransaction
           can :read, ::Spree::InventoryRelationship
           can %i[create read], ::Spree::CreditsPurchase
         end
 
-        can %i[create read], ::Spree::BacktestingRun if Engines.exists? "Spree::Backtesting"
+        can %i[create read], ::Spree::BacktestingRun if Engines.exists? 'Spree::Backtesting'
       end
     end
   end
 end
+# rubocop:enable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
 ::Spree::Ability.prepend(Community::Spree::AbilityDecorator)

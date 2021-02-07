@@ -1,0 +1,268 @@
+require: [ rubocop-rails, rubocop-rspec ]
+
+inherit_from: '.rubocop-disabled.yml'
+
+AllCops:
+  DisplayCopNames: true
+  TargetRubyVersion: 2.5
+  Exclude:
+    - '**/sandbox/**/*'
+    - '**/db/**/*'
+    - '**/Gemfile'
+    - '**/Gemfile.lock'
+    - '**/Rakefile'
+    - '**/rails'
+    - 'guides/**/*'
+    - '**/*.gemspec'
+    - '**/dummy/**/*'
+    - '**/vendor/**/*'
+    - '**/spec_helper.rb'
+    - '**/templates/**/*'
+    - 'lib/generators/**/*'
+    - 'node_modules/**/*'
+    - 'bin/**/*'
+
+Layout/MultilineOperationIndentation:
+  EnforcedStyle: indented
+
+Layout/ParameterAlignment:
+  Enabled: false
+
+Metrics/ClassLength:
+  CountComments: false
+  Max: 150
+
+Metrics/ModuleLength:
+  CountComments: false
+  Max: 250
+  Exclude:
+    - '**/spec/**/*'
+
+Style/Documentation:
+  Enabled: false
+
+Layout/LineLength:
+  Max: 150
+  Exclude:
+    - '**/spec/**/*'
+
+Metrics/MethodLength:
+  CountComments: false
+  Max: 50
+
+Metrics/BlockLength:
+  CountComments: false
+  Max: 50
+  Exclude:
+    - '**/spec/**/*'
+    - '**/*.rake'
+    - '**/factories/**/*'
+    - '**/config/routes.rb'
+
+Metrics/AbcSize:
+  Max: 45
+
+Style/StringLiterals:
+  EnforcedStyle: single_quotes
+
+Layout/DotPosition:
+  EnforcedStyle: trailing
+  Enabled: true
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/RegexpLiteral:
+  Enabled: false
+
+Style/WordArray:
+  Enabled: false
+
+Style/SymbolArray:
+  Enabled: false
+
+Style/SymbolProc:
+  Exclude:
+    - '**/app/serializers/**/*'
+
+Style/GuardClause:
+  Enabled: false
+
+Style/TrailingCommaInArrayLiteral:
+  Enabled: false
+
+Style/TrailingCommaInHashLiteral:
+  Enabled: false
+
+Style/BarePercentLiterals:
+  Enabled: false
+
+Style/MutableConstant:
+  Enabled: false
+
+Style/PercentLiteralDelimiters:
+  Enabled: false
+
+Style/IfUnlessModifier:
+  Enabled: false
+
+Naming/VariableNumber:
+  Enabled: false
+
+Style/RedundantPercentQ:
+  Enabled: false
+
+Lint/ParenthesesAsGroupedExpression:
+  Enabled: false
+
+Style/NumericPredicate:
+  Enabled: false
+
+Metrics/PerceivedComplexity:
+  Max: 10
+
+Metrics/CyclomaticComplexity:
+  Max: 10
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/AndOr:
+  Exclude:
+    - '**/*controller.rb'
+
+Style/HashEachMethods:
+  Enabled: false
+
+Style/HashTransformKeys:
+  Enabled: false
+
+Style/HashTransformValues:
+  Enabled: false
+
+RSpec/NestedGroups:
+  Max: 7
+
+Lint/AmbiguousBlockAssociation:
+  Exclude:
+    - '**/spec/**/*'
+
+Style/NumericLiterals:
+  Enabled: false
+
+Layout/SpaceBeforeBrackets:
+  Enabled: true
+
+Lint/AmbiguousAssignment:
+  Enabled: true
+
+Lint/DeprecatedConstants:
+  Enabled: true
+
+Lint/DuplicateBranch:
+  Enabled: true
+
+Lint/DuplicateRegexpCharacterClassElement:
+  Enabled: true
+
+Lint/EmptyBlock:
+  Enabled: true
+
+Lint/EmptyClass:
+  Enabled: true
+
+Lint/LambdaWithoutLiteralBlock:
+  Enabled: true
+
+Lint/NoReturnInBeginEndBlocks:
+  Enabled: true
+
+Lint/RedundantDirGlobSort:
+  Enabled: true
+
+Lint/ToEnumArguments:
+  Enabled: true
+
+Lint/UnexpectedBlockArity:
+  Enabled: true
+
+Lint/UnmodifiedReduceAccumulator:
+  Enabled: true
+
+Style/ArgumentsForwarding:
+  Enabled: true
+
+Style/CollectionCompact:
+  Enabled: true
+
+Style/DocumentDynamicEvalDefinition:
+  Enabled: true
+
+Style/EndlessMethod:
+  Enabled: true
+
+Style/HashExcept:
+  Enabled: true
+
+Style/NegatedIfElseCondition:
+  Enabled: true
+
+Style/NilLambda:
+  Enabled: true
+
+Style/RedundantArgument:
+  Enabled: true
+
+Style/SwapValues:
+  Enabled: true
+
+Rails/ActiveRecordCallbacksOrder:
+  Enabled: true
+
+Rails/AfterCommitOverride:
+  Enabled: true
+
+Rails/AttributeDefaultBlockValue:
+  Enabled: true
+
+Rails/FindById:
+  Enabled: true
+
+Rails/Inquiry:
+  Enabled: true
+
+Rails/MailerName:
+  Enabled: true
+
+Rails/MatchRoute:
+  Enabled: true
+
+Rails/NegateInclude:
+  Enabled: true
+
+Rails/Pluck:
+  Enabled: true
+
+Rails/PluckInWhere:
+  Enabled: true
+
+Rails/RenderInline:
+  Enabled: true
+
+Rails/RenderPlainText:
+  Enabled: true
+
+Rails/ShortI18n:
+  Enabled: true
+
+Rails/SquishedSQLHeredocs:
+  Enabled: true
+
+Rails/WhereEquals:
+  Enabled: true
+
+Rails/WhereExists:
+  Enabled: true
+
+Rails/WhereNot:
+  Enabled: true

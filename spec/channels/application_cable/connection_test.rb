@@ -1,4 +1,4 @@
-require "test_helper"
+require 'test_helper'
 
 class ApplicationCable::ConnectionTest < ActionCable::Connection::TestCase
   # spec "connects with cookies" do
