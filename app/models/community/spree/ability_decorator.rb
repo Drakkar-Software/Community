@@ -40,13 +40,13 @@ module Community::Spree
         can :create, ::Spree::Review
         can :create, ::Spree::FeedbackReview
 
-        if defined?(Spree::Microtransaction) == 'constant'
+        if Engines.exists? "Spree::Credits"
           can :read, ::Spree::Microtransaction
           can :read, ::Spree::InventoryRelationship
           can %i[create read], ::Spree::CreditsPurchase
         end
 
-        can %i[create read], ::Spree::BacktestingRun if defined?(Spree::BacktestingRun) == 'constant'
+        can %i[create read], ::Spree::BacktestingRun if Engines.exists? "Spree::Backtesting"
       end
     end
   end
