@@ -6,10 +6,11 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require spree/backend
+//= require accounting.min
+//= require spree/frontend
 
 //= require_tree .
-//= require spree/backend/spree_digital
-//= require spree/backend/spree_reviews
-//= require spree/backend/spree_credits
-//= require spree/backend/spree_backtesting
+//= require spree/frontend/spree_reviews
+<% require 'spree/backend/spree_credits' if Engines.exists? "Spree::Credits" %>
+<% require 'spree/backend/spree_backtesting' if Engines.exists? "Spree::Backtesting" %>
+<% require 'spree/backend/spree_tentacles' if Engines.exists? "Spree::Tentacles" %>

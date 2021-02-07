@@ -3,12 +3,11 @@
  * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
  * the top of the compiled file, but it's generally better to create a new file per style scope.
  *
- *= require spree/frontend
+ *= require spree/backend
 
  *= require_self
  *= require_tree .
- *= require spree/frontend/spree_digital
- *= require spree/frontend/spree_reviews
- *= require spree/frontend/spree_credits
- *= require spree/frontend/spree_backtesting
+<% require 'spree/backend/spree_credits' if Engines.exists? "Spree::Credits" %>
+<% require 'spree/backend/spree_backtesting' if Engines.exists? "Spree::Backtesting" %>
+<% require 'spree/backend/spree_tentacles' if Engines.exists? "Spree::Tentacles" %>
 */
