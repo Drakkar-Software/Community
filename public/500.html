@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>We're sorry, but something went wrong (500)</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <style>
+    .octobot-error-page {
+      background-color: #212529;
+      color: white;
+      text-align: center;
+      font-family: arial, sans-serif;
+      margin: 0;
+    }
+
+    .octobot-error-page div.dialog {
+      width: 95%;
+      max-width: 33em;
+      margin: 4em auto 0;
+    }
+
+    .octobot-error-page div.dialog > div {
+      border-top: rgb(229,57,53) solid 4px;
+      border-top-left-radius: 9px;
+      border-top-right-radius: 9px;
+      background-color: rgb(52, 58, 64);
+      padding: 7px 12% 0;
+      padding-bottom: 1px;
+    }
+
+    .octobot-error-page h1 {
+      font-size: 100%;
+      line-height: 1.5em;
+    }
+
+    .octobot-error-page button {
+      font-size: 100%;
+      line-height: 1.5em;
+      color: gray;
+      background-color: transparent;
+      border-width: 0;
+      font-weight: bold;
+      transition: all .1s ease-in-out;
+    }
+
+    .octobot-error-page button:hover {
+      transform: scale(1.1);
+      background-color: rgb(229,57,53);
+      color: white;
+    }
+  </style>
+</head>
+
+<body class="octobot-error-page">
+<!-- This file lives in public/404.html -->
+<div class="dialog">
+  <div>
+    <h1>We are sorry, but something went wrong.</h1>
+    <p><button onclick="goBack()">Go Back</button></p>
+  </div>
+</div>
+</body>
+
+<script>
+  function goBack() {
+    window.history.back();
+  }
+</script>
+
+</html>

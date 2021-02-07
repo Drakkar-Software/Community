@@ -1,0 +1,12 @@
+@import "../../../variables/variables";
+div.star-rating {
+  a {
+    color: $secondary-color !important;
+  }
+  &-on a {
+    color: $primary-color !important;
+  }
+  &-hover a {
+    color: $primary-color !important;
+  }
+}
