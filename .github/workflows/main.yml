@@ -115,13 +115,13 @@ jobs:
           yarn install --pure-lockfile
           sudo ln -s /usr/lib/x86_64-linux-gnu/libffi.so.7 /usr/lib/x86_64-linux-gnu/libffi.so.6 # fix libffi.so.6 missing on ubuntu 20.04
 
-      - name: Setup test database
-        env:
-          RAILS_ENV: test
-          PGHOST: localhost
-          PGUSER: myapp
-        run: |
-          bundle exec rake test_app
+#      - name: Setup test database
+#        env:
+#          RAILS_ENV: test
+#          PGHOST: localhost
+#          PGUSER: myapp
+#        run: |
+#          bundle exec rake test_app
 
       - name: Run tests
         run: |
