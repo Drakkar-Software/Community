@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_05_222541) do
+ActiveRecord::Schema.define(version: 2021_02_07_230514) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -610,6 +610,7 @@ ActiveRecord::Schema.define(version: 2020_09_05_222541) do
     t.decimal "avg_rating", precision: 7, scale: 5, default: "0.0", null: false
     t.integer "reviews_count", default: 0, null: false
     t.integer "inventory_relationships_count", default: 0
+    t.bigint "tentacle_package_id"
     t.index ["available_on"], name: "index_spree_products_on_available_on"
     t.index ["deleted_at"], name: "index_spree_products_on_deleted_at"
     t.index ["discontinue_on"], name: "index_spree_products_on_discontinue_on"
@@ -617,6 +618,7 @@ ActiveRecord::Schema.define(version: 2020_09_05_222541) do
     t.index ["shipping_category_id"], name: "index_spree_products_on_shipping_category_id"
     t.index ["slug"], name: "index_spree_products_on_slug", unique: true
     t.index ["tax_category_id"], name: "index_spree_products_on_tax_category_id"
+    t.index ["tentacle_package_id"], name: "index_spree_products_on_tentacle_package_id"
   end
 
   create_table "spree_products_taxons", id: :serial, force: :cascade do |t|
@@ -1186,6 +1188,58 @@ ActiveRecord::Schema.define(version: 2020_09_05_222541) do
     t.index ["position"], name: "index_spree_taxons_on_position"
     t.index ["rgt"], name: "index_spree_taxons_on_rgt"
     t.index ["taxonomy_id"], name: "index_taxons_on_taxonomy_id"
+  end
+
+  create_table "spree_tentacle_package_version_items", force: :cascade do |t|
+    t.bigint "tentacle_version_id"
+    t.bigint "tentacle_package_version_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["tentacle_package_version_id"], name: "idx_package_items_on_package_version_id"
+    t.index ["tentacle_version_id"], name: "idx_package_items_on_tentacle_version_id"
+  end
+
+  create_table "spree_tentacle_package_versions", force: :cascade do |t|
+    t.bigint "tentacle_package_id"
+    t.string "version"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["tentacle_package_id"], name: "index_spree_tentacle_package_versions_on_tentacle_package_id"
+  end
+
+  create_table "spree_tentacle_packages", force: :cascade do |t|
+    t.bigint "tentacles_registry_id"
+    t.bigint "product_id"
+    t.string "url"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["product_id"], name: "index_spree_tentacle_packages_on_product_id"
+    t.index ["tentacles_registry_id"], name: "index_spree_tentacle_packages_on_tentacles_registry_id"
+  end
+
+  create_table "spree_tentacle_versions", force: :cascade do |t|
+    t.bigint "tentacle_id"
+    t.string "version"
+    t.string "author"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["tentacle_id", "version"], name: "index_spree_tentacle_versions_on_tentacle_id_and_version", unique: true
+    t.index ["tentacle_id"], name: "index_spree_tentacle_versions_on_tentacle_id"
+  end
+
+  create_table "spree_tentacles", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "spree_tentacles_registries", force: :cascade do |t|
+    t.string "name"
+    t.string "url"
+    t.string "registry_type"
+    t.string "registry_name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "spree_trackers", id: :serial, force: :cascade do |t|
