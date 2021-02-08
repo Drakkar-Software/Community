@@ -233,28 +233,6 @@ ActiveRecord::Schema.define(version: 2021_02_07_230514) do
     t.index ["runner_id", "run_type"], name: "index_spree_daily_run_counters_on_runner_id_and_run_type"
   end
 
-  create_table "spree_digital_links", id: :serial, force: :cascade do |t|
-    t.integer "digital_id"
-    t.integer "line_item_id"
-    t.string "secret"
-    t.integer "access_counter"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.index ["digital_id"], name: "index_spree_digital_links_on_digital_id"
-    t.index ["line_item_id"], name: "index_spree_digital_links_on_line_item_id"
-    t.index ["secret"], name: "index_spree_digital_links_on_secret"
-  end
-
-  create_table "spree_digitals", id: :serial, force: :cascade do |t|
-    t.integer "variant_id"
-    t.string "attachment_file_name"
-    t.string "attachment_content_type"
-    t.integer "attachment_file_size"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.index ["variant_id"], name: "index_spree_digitals_on_variant_id"
-  end
-
   create_table "spree_feedback_reviews", id: :serial, force: :cascade do |t|
     t.integer "user_id"
     t.integer "review_id", null: false
