@@ -41,13 +41,13 @@ module Community::Spree
         can :create, ::Spree::Review
         can :create, ::Spree::FeedbackReview
 
-        if Engines.exists? 'Spree::Credits'
+        if defined?(Spree::Credits)
           can :read, ::Spree::Microtransaction
           can :read, ::Spree::InventoryRelationship
           can %i[create read], ::Spree::CreditsPurchase
         end
 
-        can %i[create read], ::Spree::BacktestingRun if Engines.exists? 'Spree::Backtesting'
+        can %i[create read], ::Spree::BacktestingRun if defined?(Spree::Backtesting)
       end
     end
   end
