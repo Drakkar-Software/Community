@@ -1,4 +1,4 @@
-name: DrakkarSoftware - Community
+name: Community - Main
 on: [ push ]
 
 jobs:
