@@ -64,6 +64,10 @@ group :test do
   gem 'rails-controller-testing'
 end
 
+group :production do
+  gem 'spree_reviews', github: 'Drakkar-Software/spree_reviews', branch: 'spree4'
+end
+
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
@@ -74,7 +78,6 @@ gem 'plotly-rails-js', github: 'Drakkar-Software/plotly-rails-js', branch: 'fina
 gem 'spree', github: 'Drakkar-Software/spree', branch: 'spree4'
 gem 'spree_auth_devise', github: 'Drakkar-Software/spree_auth_devise', branch: 'spree4'
 gem 'spree_gateway', github: 'Drakkar-Software/spree_gateway', branch: 'spree4'
-gem 'spree_digital', github: 'Drakkar-Software/spree_digital', branch: 'spree4'
 gem 'spree_related_products', github: 'Drakkar-Software/spree_related_products', branch: 'spree4'
 gem 'spree_reviews', github: 'Drakkar-Software/spree_reviews', branch: 'spree4'
 
