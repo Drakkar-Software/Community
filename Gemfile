@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
+git_source(:authenticated_github) { |repo| "https://#{ENV['GITHUB_TOKEN']}:x-oauth-basic@github.com/#{repo}.git" }
 
 ruby '2.6.6'
 
@@ -65,7 +66,9 @@ group :test do
 end
 
 group :production do
-  gem 'spree_reviews', github: 'Drakkar-Software/spree_reviews', branch: 'spree4'
+  gem 'spree_credits', authenticated_github: 'Drakkar-Software/spree_credits', branch: 'master'
+  gem 'spree_backtesting', authenticated_github: 'Drakkar-Software/spree_backtesting', branch: 'master'
+  gem 'spree_tentacles', authenticated_github: 'Drakkar-Software/spree_tentacles', branch: 'master'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
