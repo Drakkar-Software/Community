@@ -92,17 +92,27 @@ GIT
       spree_extension
 
 GIT
-  remote: https://github.com/Drakkar-Software/spree_digital.git
-  revision: 31f31d6ad592e361816bb1b9dddbed215996da58
+  remote: https://github.com/Drakkar-Software/spree_backtesting.git
+  revision: f7aa75fdcfcc416b368c0a38d62cac259116573f
   branch: spree4
   specs:
-    spree_digital (4.0.0)
-      deface (~> 1.0)
-      spree_api (>= 3.1.0, < 5.0)
-      spree_backend (>= 3.1.0, < 5.0)
-      spree_core (>= 3.1.0, < 5.0)
+    spree_backtesting (0.0.1.alpha)
+      plotly-rails-js
+      select2-rails
+      spree_backend (>= 3.2.0, < 5.0)
+      spree_core (>= 3.2.0, < 5.0)
       spree_extension
-      spree_frontend (>= 3.1.0, < 5.0)
+
+GIT
+  remote: https://github.com/Drakkar-Software/spree_credits.git
+  revision: bb8cd0f513f0a7a15d25e17b727bd4e3b50d0677
+  branch: spree4
+  specs:
+    spree_credits (0.0.1.alpha)
+      binance-ruby
+      spree_backend (>= 3.2.0, < 5.0)
+      spree_core (>= 3.2.0, < 5.0)
+      spree_extension
 
 GIT
   remote: https://github.com/Drakkar-Software/spree_gateway.git
@@ -132,6 +142,17 @@ GIT
     spree_reviews (3.3.0)
       spree_auth_devise (>= 3.1.0, < 5.0)
       spree_core (>= 3.1.0, < 5.0)
+      spree_extension
+
+GIT
+  remote: https://github.com/Drakkar-Software/spree_tentacles.git
+  revision: 6ca161e0c6b577b8d84e7cc0964dce1d55ec1853
+  branch: master
+  specs:
+    spree_tentacles (0.0.1.alpha)
+      spree_api (>= 3.2.0, < 5.0)
+      spree_backend (>= 3.2.0, < 5.0)
+      spree_core (>= 3.2.0, < 5.0)
       spree_extension
 
 GEM
@@ -610,10 +631,12 @@ DEPENDENCIES
   simplecov
   spree!
   spree_auth_devise!
-  spree_digital!
+  spree_backtesting!
+  spree_credits!
   spree_gateway!
   spree_related_products!
   spree_reviews!
+  spree_tentacles!
   turbolinks (~> 5)
   tzinfo-data
   web-console (>= 3.3.0)
