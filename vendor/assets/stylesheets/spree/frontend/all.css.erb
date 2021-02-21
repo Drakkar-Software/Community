@@ -8,6 +8,6 @@
  *= require_self
  *= require_tree .
  *= require spree/frontend/spree_reviews
- *= require spree/backend/spree_credits
- *= require spree/backend/spree_backtesting
+ <% require spree/frontend/spree_credits if defined?(Spree::Credits) %>
+ <%  require spree/frontend/spree_backtesting if defined?(Spree::Backtesting) %>
 */
