@@ -1,5 +1,5 @@
-desc 'This task is called to reset the database'
-task reseed_database: :environment do
+desc 'This task is called to reset the database with test data'
+task reseed_test_database: :environment do
   puts 'Cleaning Up The DB...'
   DatabaseCleaner.strategy = :truncation
   DatabaseCleaner.clean
