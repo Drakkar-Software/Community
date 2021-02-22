@@ -64,12 +64,6 @@ group :test do
   gem 'rails-controller-testing'
 end
 
-group :production do
-  gem 'spree_credits', github: 'Drakkar-Software/spree_credits', branch: 'spree4'
-  gem 'spree_backtesting', github: 'Drakkar-Software/spree_backtesting', branch: 'spree4'
-  gem 'spree_tentacles', github: 'Drakkar-Software/spree_tentacles', branch: 'master'
-end
-
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
@@ -82,6 +76,12 @@ gem 'spree_auth_devise', github: 'Drakkar-Software/spree_auth_devise', branch: '
 gem 'spree_gateway', github: 'Drakkar-Software/spree_gateway', branch: 'spree4'
 gem 'spree_related_products', github: 'Drakkar-Software/spree_related_products', branch: 'spree4'
 gem 'spree_reviews', github: 'Drakkar-Software/spree_reviews', branch: 'spree4'
+
+group :development, :production do
+  gem 'spree_credits', github: 'Drakkar-Software/spree_credits', branch: 'spree4'
+  gem 'spree_backtesting', github: 'Drakkar-Software/spree_backtesting', branch: 'spree4'
+  gem 'spree_tentacles', github: 'Drakkar-Software/spree_tentacles', branch: 'master'
+end
 
 # database
 gem 'activerecord-nulldb-adapter'
