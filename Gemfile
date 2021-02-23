@@ -70,17 +70,20 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'binance-ruby', github: 'Drakkar-Software/binance-ruby', branch: 'rails6.0'
 gem 'plotly-rails-js', github: 'Drakkar-Software/plotly-rails-js', branch: 'finance'
 
+# View overrides
+gem 'deface'
+
 # Spree
-gem 'spree', github: 'Drakkar-Software/spree', branch: 'spree4'
-gem 'spree_auth_devise', github: 'Drakkar-Software/spree_auth_devise', branch: 'spree4'
-gem 'spree_gateway', github: 'Drakkar-Software/spree_gateway', branch: 'spree4'
-gem 'spree_related_products', github: 'Drakkar-Software/spree_related_products', branch: 'spree4'
+gem 'spree', github: 'Drakkar-Software/spree', branch: 'spree4.2'
+gem 'spree_auth_devise', github: 'Drakkar-Software/spree_auth_devise', branch: 'spree4.2'
+gem 'spree_gateway', github: 'Drakkar-Software/spree_gateway', branch: 'spree4.2'
+gem 'spree_related_products', github: 'Drakkar-Software/spree_related_products', branch: 'spree4.2'
 gem 'spree_reviews', github: 'Drakkar-Software/spree_reviews', branch: 'spree4'
 
 group :development, :production do
-  gem 'spree_credits', github: 'Drakkar-Software/spree_credits', branch: 'spree4'
-  gem 'spree_backtesting', github: 'Drakkar-Software/spree_backtesting', branch: 'spree4'
-  gem 'spree_tentacles', github: 'Drakkar-Software/spree_tentacles', branch: 'master'
+  gem 'spree_credits', github: 'Drakkar-Software/spree_credits', branch: 'spree4.2'
+  gem 'spree_backtesting', github: 'Drakkar-Software/spree_backtesting', branch: 'spree4.2'
+  gem 'spree_tentacles', github: 'Drakkar-Software/spree_tentacles', branch: 'spree4.2'
 end
 
 # database
