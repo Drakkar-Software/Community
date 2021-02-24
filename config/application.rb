@@ -20,7 +20,7 @@ module OctoBotCommunity
       end
     end
     # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 6.0
+    config.load_defaults 6.1
 
     # Use sidekiq instead of async as Active Job adapter
     config.active_job.queue_adapter = :sidekiq
