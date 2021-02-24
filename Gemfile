@@ -48,11 +48,12 @@ group :development, :test do
   gem 'bundler-audit'
   gem 'brakeman'
 
-  # reqired to listen to file changes in rails 6.1+
+  # required to listen to file changes in rails 6.1+
   gem 'listen'
 end
 
 group :test do
+
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
