@@ -42,12 +42,12 @@ default:
         - :title: Jackets and Coats
           :url: /t/women/jackets-and-coats
       promo_banners:
-        - subtitle: New collection
-          title: Summer 2019
+        - subtitle: Investor bundle
+          title: Investor bundle
           url: /t/new-collection/summer-2019
           image: 'meganav/promo_banner_left-first-category.jpg'
-        - subtitle: Special Offers
-          title: Get up to 30% off
+        - subtitle: OctoBot monitoring bundle
+          title: OctoBot monitoring bundle
           url: /t/special-offers/30-off
           image: 'meganav/promo_banner_right-first-category.jpg'
     - title: Men

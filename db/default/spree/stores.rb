@@ -3,7 +3,7 @@ unless Spree::Store.where(code: 'spree').exists?
   Spree::Store.new do |s|
     s.code              = 'OctoBot Community'
     s.name              = 'OctoBot Community'
-    s.url               = ENV['HOST_DOMAIN'] || 'obmp2.herokuapp.com'
+    s.url               = ENV['HOST_DOMAIN'] || 'community.octobot.online'
     s.mail_from_address = 'drakkar-software@protonmail.com'
     s.meta_description  = "Simply customize and improve your OctoBot using the community extensions. Test and use new strategies, additional features and more."
     s.seo_title         = "OctoBot Community"

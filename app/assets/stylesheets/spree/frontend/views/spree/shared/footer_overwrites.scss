@@ -1,0 +1,11 @@
+.footer-spree {
+  .logo img {
+    height: 27px;
+    width: 27px;
+    //replaces @include media-breakpoint-up(xl) TODO: find a way to use it
+    @media (min-width: 1200px) {
+      height: 52px;
+      width: 52px;
+    }
+  }
+}
