@@ -32,6 +32,13 @@
 en:
   spree:
 
+    navbar:
+      title: OctoBot Community
+
+    home_page:
+      banner_message: Augment your OctoBot with the community tentacles
+      discover: Discover
+
     # product
     tentacle_activation: Tentacles activation
     element_activated: Element activated
