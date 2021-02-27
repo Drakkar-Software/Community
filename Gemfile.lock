@@ -163,7 +163,7 @@ GIT
       spree_extension
 
 GIT
-  remote: https://github.com/spree-contrib/spree_sitemap.git
+  remote: https://github.com/Drakkar-Software/spree_sitemap.git
   revision: 20a0afb3ff6255fcdd7ea8fa7e8a5ee6f9fc6398
   specs:
     spree_sitemap (3.3.1)
