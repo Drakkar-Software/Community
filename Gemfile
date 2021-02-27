@@ -81,6 +81,7 @@ gem 'deface'
 gem 'spree', github: 'Drakkar-Software/spree', branch: 'spree4.2'
 gem 'spree_auth_devise', github: 'Drakkar-Software/spree_auth_devise', branch: 'spree4.2'
 gem 'spree_gateway', github: 'Drakkar-Software/spree_gateway', branch: 'spree4.2'
+gem 'spree_sitemap', github: 'spree-contrib/spree_sitemap'
 gem 'spree_related_products', github: 'Drakkar-Software/spree_related_products', branch: 'spree4.2'
 gem 'spree_reviews', github: 'Drakkar-Software/spree_reviews', branch: 'spree4'
 
