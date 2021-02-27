@@ -17,22 +17,22 @@ GIT
 
 GIT
   remote: https://github.com/Drakkar-Software/spree.git
-  revision: f5208b9c267061b68f995af98032370837acd6cb
+  revision: 2f485523f78458d570563e3d0d8d25acef02b91b
   branch: spree4.2
   specs:
-    spree (4.2.0)
-      spree_api (= 4.2.0)
-      spree_backend (= 4.2.0)
-      spree_cmd (= 4.2.0)
-      spree_core (= 4.2.0)
-      spree_frontend (= 4.2.0)
-      spree_sample (= 4.2.0)
-    spree_api (4.2.0)
+    spree (4.2.0.rc5)
+      spree_api (= 4.2.0.rc5)
+      spree_backend (= 4.2.0.rc5)
+      spree_cmd (= 4.2.0.rc5)
+      spree_core (= 4.2.0.rc5)
+      spree_frontend (= 4.2.0.rc5)
+      spree_sample (= 4.2.0.rc5)
+    spree_api (4.2.0.rc5)
       doorkeeper (~> 5.2, >= 5.2.1)
       jsonapi-serializer (~> 2.1)
       rabl (~> 0.14.2)
-      spree_core (= 4.2.0)
-    spree_backend (4.2.0)
+      spree_core (= 4.2.0.rc5)
+    spree_backend (4.2.0.rc5)
       bootstrap (>= 4.3.1, < 4.7.0)
       flatpickr (~> 4.6.0)
       glyphicons (~> 1.0.2)
@@ -40,11 +40,11 @@ GIT
       jquery-rails (~> 4.3)
       jquery-ui-rails (~> 6.0.1)
       select2-rails (~> 4.0.0)
-      spree_api (= 4.2.0)
-      spree_core (= 4.2.0)
-    spree_cmd (4.2.0)
+      spree_api (= 4.2.0.rc5)
+      spree_core (= 4.2.0.rc5)
+    spree_cmd (4.2.0.rc5)
       thor (~> 1.0)
-    spree_core (4.2.0)
+    spree_core (4.2.0.rc5)
       active_storage_validations (~> 0.9)
       activemerchant (~> 1.67)
       acts_as_list (~> 0.8)
@@ -71,17 +71,17 @@ GIT
       state_machines-activerecord (~> 0.6)
       stringex
       twitter_cldr (>= 4.3, < 7.0)
-    spree_frontend (4.2.0)
+    spree_frontend (4.2.0.rc5)
       bootstrap (>= 4.3.1, < 4.7.0)
       canonical-rails (~> 0.2.10)
       glyphicons (~> 1.0.2)
       inline_svg (~> 1.5)
       jquery-rails (~> 4.3)
-      spree_api (= 4.2.0)
-      spree_core (= 4.2.0)
+      spree_api (= 4.2.0.rc5)
+      spree_core (= 4.2.0.rc5)
       turbolinks (~> 5.2.0)
-    spree_sample (4.2.0)
-      spree_core (= 4.2.0)
+    spree_sample (4.2.0.rc5)
+      spree_core (= 4.2.0.rc5)
 
 GIT
   remote: https://github.com/Drakkar-Software/spree_auth_devise.git
@@ -96,7 +96,7 @@ GIT
 
 GIT
   remote: https://github.com/Drakkar-Software/spree_backtesting.git
-  revision: 43e2184ce2700cf1d5478f14ab81af147a256406
+  revision: db7abc5a72ea87fd63f4507f0d6bd7b70026eb37
   branch: spree4.2
   specs:
     spree_backtesting (0.0.1.alpha)
@@ -111,7 +111,7 @@ GIT
 
 GIT
   remote: https://github.com/Drakkar-Software/spree_credits.git
-  revision: 824e2762fd2b6620a20c422bced42dad41dcb26d
+  revision: 81e4ee412809adf26e54f67fc7f9b51868126081
   branch: spree4.2
   specs:
     spree_credits (0.0.1.alpha)
@@ -160,6 +160,15 @@ GIT
       spree_api (>= 3.2.0, < 5.0)
       spree_backend (>= 3.2.0, < 5.0)
       spree_core (>= 3.2.0, < 5.0)
+      spree_extension
+
+GIT
+  remote: https://github.com/spree-contrib/spree_sitemap.git
+  revision: 20a0afb3ff6255fcdd7ea8fa7e8a5ee6f9fc6398
+  specs:
+    spree_sitemap (3.3.1)
+      sitemap_generator
+      spree_core (>= 3.1.0, < 5.0)
       spree_extension
 
 GEM
@@ -402,7 +411,7 @@ GEM
     minitest (5.14.4)
     monetize (1.10.0)
       money (~> 6.12)
-    money (6.14.0)
+    money (6.14.1)
       i18n (>= 0.6.4, <= 2)
     msgpack (1.4.2)
     multi_xml (0.6.0)
@@ -562,6 +571,8 @@ GEM
       simplecov_json_formatter (~> 0.1)
     simplecov-html (0.12.3)
     simplecov_json_formatter (0.1.2)
+    sitemap_generator (6.1.2)
+      builder (~> 3.0)
     spree_extension (0.0.9)
       activerecord (>= 4.2)
       spree_core
@@ -660,6 +671,7 @@ DEPENDENCIES
   spree_gateway!
   spree_related_products!
   spree_reviews!
+  spree_sitemap!
   spree_tentacles!
   turbolinks (~> 5)
   tzinfo-data
