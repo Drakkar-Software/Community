@@ -39,6 +39,9 @@ en:
       banner_message: Augment your OctoBot with the community tentacles
       discover: Discover
 
+    product_page:
+      per_month: / month
+
     # product
     tentacle_activation: Tentacles activation
     element_activated: Element activated
