@@ -64,6 +64,7 @@ $fa-font-path: '../../@fortawesome/fontawesome-free/webfonts';
 @import "spree/frontend/views/spree/shared/delete_address_popup";
 
 // App files
+@import "views/spree/shared/bootstrap_components_overwrites";
 @import "views/spree/shared/header_overwrites";
 @import "views/spree/shared/footer_overwrites";
 @import "views/spree/shared/star_rating";
