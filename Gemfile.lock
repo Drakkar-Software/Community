@@ -96,8 +96,8 @@ GIT
 
 GIT
   remote: https://github.com/Drakkar-Software/spree_backtesting.git
-  revision: db7abc5a72ea87fd63f4507f0d6bd7b70026eb37
-  branch: spree4.2
+  revision: 66fb212fe38fe8933bc58d6377309ebe3c7f2196
+  branch: master
   specs:
     spree_backtesting (0.0.1.alpha)
       aws-sdk-s3
@@ -111,8 +111,8 @@ GIT
 
 GIT
   remote: https://github.com/Drakkar-Software/spree_credits.git
-  revision: 81e4ee412809adf26e54f67fc7f9b51868126081
-  branch: spree4.2
+  revision: 82d68abe3bb9ec06ed488425813d28c571e8a381
+  branch: master
   specs:
     spree_credits (0.0.1.alpha)
       binance-ruby
@@ -163,7 +163,7 @@ GIT
       spree_extension
 
 GIT
-  remote: https://github.com/Drakkar-Software/spree_sitemap.git
+  remote: https://github.com/spree-contrib/spree_sitemap.git
   revision: 20a0afb3ff6255fcdd7ea8fa7e8a5ee6f9fc6398
   specs:
     spree_sitemap (3.3.1)

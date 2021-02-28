@@ -86,8 +86,8 @@ gem 'spree_related_products', github: 'Drakkar-Software/spree_related_products',
 gem 'spree_reviews', github: 'Drakkar-Software/spree_reviews', branch: 'spree4'
 
 group :development, :production do
-  gem 'spree_credits', github: 'Drakkar-Software/spree_credits', branch: 'spree4.2'
-  gem 'spree_backtesting', github: 'Drakkar-Software/spree_backtesting', branch: 'spree4.2'
+  gem 'spree_credits', github: 'Drakkar-Software/spree_credits', branch: 'master'
+  gem 'spree_backtesting', github: 'Drakkar-Software/spree_backtesting', branch: 'master'
   gem 'spree_tentacles', github: 'Drakkar-Software/spree_tentacles', branch: 'spree4.2'
 end
 
