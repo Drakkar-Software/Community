@@ -2,7 +2,7 @@
 
 a {
   &.link {
-    color: white;
+    color: $font-color;
     &:hover {
       text-decoration: none;
       color: $primary-color;
