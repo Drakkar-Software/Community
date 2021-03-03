@@ -64,9 +64,13 @@ $fa-font-path: '../../@fortawesome/fontawesome-free/webfonts';
 @import "spree/frontend/views/spree/shared/delete_address_popup";
 
 // App files
-@import "views/spree/shared/bootstrap_components_overwrites";
-@import "views/spree/shared/header_overwrites";
-@import "views/spree/shared/footer_overwrites";
+@import "views/spree/shared/bootstrap_components_overrides";
+@import "views/spree/shared/header_overrides";
+@import "views/spree/shared/nav_bar_overrides";
+@import "views/spree/shared/footer_overrides";
 @import "views/spree/shared/star_rating";
-@import "views/spree/home/index_overwrites";
+@import "views/spree/home/index_overrides";
 @import "views/spree/products/cart_form_activation";
+@import "views/spree/products/index_overrides";
+@import "views/spree/products/show_overrides";
+@import "views/spree/users/show_overrides";
