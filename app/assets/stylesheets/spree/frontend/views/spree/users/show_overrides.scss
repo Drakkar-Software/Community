@@ -1,0 +1,11 @@
+@import "spree/frontend/variables/variables";
+
+a {
+  &.link {
+    color: white;
+    &:hover {
+      text-decoration: none;
+      color: $primary-color;
+    }
+  }
+}
