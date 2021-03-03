@@ -1,0 +1,14 @@
+@import "spree/frontend/variables/variables";
+
+.navbar-right {
+  &-dropdown {
+    .dropdown-menu {
+      .dropdown-item {
+        color: $font-color;
+        &:hover {
+          background-color: $primary-color;
+        }
+      }
+    }
+  }
+}
