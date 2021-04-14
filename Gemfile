@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.6.6'
+ruby '2.6.7'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.1.3', '>= 6.0.3.2'
@@ -103,6 +103,3 @@ gem 'aws-sdk-s3'
 # On heroku: "You are connecting to Redis v3.2.12, Sidekiq requires Redis v4.0.0 or greater"
 gem 'sidekiq', '~> 5.2'
 gem "sidekiq-cron", "~> 1.1"
-
-# parser 3.0.1 is for ruby 2.6.7: remove this max version at next ruby update
-gem "parser", "3.0.0", "< 3.0.1"
