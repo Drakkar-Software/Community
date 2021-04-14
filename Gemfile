@@ -82,6 +82,7 @@ gem 'spree', github: 'Drakkar-Software/spree', branch: 'spree4.2'
 gem 'spree_auth_devise', github: 'Drakkar-Software/spree_auth_devise', branch: 'spree4.2'
 gem 'spree_gateway', github: 'Drakkar-Software/spree_gateway', branch: 'spree4.2'
 gem 'spree_sitemap', github: 'spree-contrib/spree_sitemap'
+gem 'spree_sitemap', github: 'Drakkar-Software/spree_sitemap', branch: 'master'
 gem 'spree_related_products', github: 'Drakkar-Software/spree_related_products', branch: 'spree4.2'
 gem 'spree_reviews', github: 'Drakkar-Software/spree_reviews', branch: 'spree4'
 
@@ -94,9 +95,15 @@ end
 # database
 gem 'activerecord-nulldb-adapter'
 
+# nexus connection: also have it here for sidekiq to have it
+gem 'nexus_api'
+
 gem 'aws-sdk-s3'
 
 # Keep 5.X versions to ensure compatibility with heroku free redis database
 # On heroku: "You are connecting to Redis v3.2.12, Sidekiq requires Redis v4.0.0 or greater"
 gem 'sidekiq', '~> 5.2'
 gem "sidekiq-cron", "~> 1.1"
+
+# parser 3.0.1 is for ruby 2.6.7: remove this max version at next ruby update
+gem "parser", "3.0.0", "< 3.0.1"
