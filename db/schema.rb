@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_22_215974) do
+ActiveRecord::Schema.define(version: 2021_04_24_212356) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -1215,6 +1215,7 @@ ActiveRecord::Schema.define(version: 2021_02_22_215974) do
     t.string "url"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "accessibility"
     t.index ["product_id"], name: "index_spree_tentacle_packages_on_product_id"
     t.index ["tentacles_registry_id"], name: "index_spree_tentacle_packages_on_tentacles_registry_id"
   end
@@ -1233,6 +1234,8 @@ ActiveRecord::Schema.define(version: 2021_02_22_215974) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "accessibility"
+    t.string "key"
   end
 
   create_table "spree_tentacles_registries", force: :cascade do |t|
