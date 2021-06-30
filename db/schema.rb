@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_20_164520) do
+ActiveRecord::Schema.define(version: 2021_06_30_213403) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -601,10 +601,12 @@ ActiveRecord::Schema.define(version: 2021_06_20_164520) do
     t.integer "reviews_count", default: 0, null: false
     t.integer "inventory_relationships_count", default: 0
     t.bigint "tentacle_package_id"
+    t.bigint "profile_id"
     t.index ["available_on"], name: "index_spree_products_on_available_on"
     t.index ["deleted_at"], name: "index_spree_products_on_deleted_at"
     t.index ["discontinue_on"], name: "index_spree_products_on_discontinue_on"
     t.index ["name"], name: "index_spree_products_on_name"
+    t.index ["profile_id"], name: "index_spree_products_on_profile_id"
     t.index ["shipping_category_id"], name: "index_spree_products_on_shipping_category_id"
     t.index ["slug"], name: "index_spree_products_on_slug", unique: true
     t.index ["tax_category_id"], name: "index_spree_products_on_tax_category_id"
@@ -619,6 +621,21 @@ ActiveRecord::Schema.define(version: 2021_06_20_164520) do
     t.index ["product_id", "taxon_id"], name: "index_spree_products_taxons_on_product_id_and_taxon_id", unique: true
     t.index ["product_id"], name: "index_spree_products_taxons_on_product_id"
     t.index ["taxon_id"], name: "index_spree_products_taxons_on_taxon_id"
+  end
+
+  create_table "spree_profiles", force: :cascade do |t|
+    t.bigint "product_id"
+    t.bigint "user_id"
+    t.bigint "tentacles_registry_id"
+    t.string "name"
+    t.string "description"
+    t.string "version"
+    t.boolean "approved", default: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["product_id"], name: "index_spree_profiles_on_product_id"
+    t.index ["tentacles_registry_id"], name: "index_spree_profiles_on_tentacles_registry_id"
+    t.index ["user_id"], name: "index_spree_profiles_on_user_id"
   end
 
   create_table "spree_promotion_action_line_items", id: :serial, force: :cascade do |t|
