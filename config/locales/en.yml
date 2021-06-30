@@ -32,11 +32,15 @@
 en:
   spree:
 
+    navbar:
+      title: OctoBot Community
+
+    home_page:
+      banner_message: Augment your OctoBot with the community tentacles
+      discover: Discover
+
     # product
     tentacle_activation: Tentacles activation
-    element_activated: Element activated
-    element_deactivated_will_remain_usable_till_midnight_utc: Element deactivated, it will remain usable until UTC midnight
-    error_when_saving_setting: Error when saving setting
 
     # credit purchases
     error_when_updating_account: Error when updating account

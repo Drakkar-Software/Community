@@ -1,10 +1,10 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.6.6'
+ruby '2.6.7'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 6.0.3', '>= 6.0.3.2'
+gem 'rails', '~> 6.1.3', '>= 6.0.3.2'
 # Use postgresql as the database for Active Record
 gem 'pg'
 # Use Puma as the app server
@@ -47,9 +47,13 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'bundler-audit'
   gem 'brakeman'
+
+  # required to listen to file changes in rails 6.1+
+  gem 'listen'
 end
 
 group :test do
+
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
@@ -64,27 +68,34 @@ group :test do
   gem 'rails-controller-testing'
 end
 
-group :production do
-  gem 'spree_credits', github: 'Drakkar-Software/spree_credits', branch: 'spree4'
-  gem 'spree_backtesting', github: 'Drakkar-Software/spree_backtesting', branch: 'spree4'
-  gem 'spree_tentacles', github: 'Drakkar-Software/spree_tentacles', branch: 'master'
-end
-
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'binance-ruby', github: 'Drakkar-Software/binance-ruby', branch: 'rails6.0'
 gem 'plotly-rails-js', github: 'Drakkar-Software/plotly-rails-js', branch: 'finance'
 
+# View overrides
+gem 'deface'
+
 # Spree
-gem 'spree', github: 'Drakkar-Software/spree', branch: 'spree4'
-gem 'spree_auth_devise', github: 'Drakkar-Software/spree_auth_devise', branch: 'spree4'
-gem 'spree_gateway', github: 'Drakkar-Software/spree_gateway', branch: 'spree4'
-gem 'spree_related_products', github: 'Drakkar-Software/spree_related_products', branch: 'spree4'
+gem 'spree', github: 'Drakkar-Software/spree', branch: 'spree4.2'
+gem 'spree_auth_devise', github: 'Drakkar-Software/spree_auth_devise', branch: 'spree4.2'
+gem 'spree_gateway', github: 'Drakkar-Software/spree_gateway', branch: 'spree4.2'
+gem 'spree_sitemap', github: 'Drakkar-Software/spree_sitemap', branch: 'master'
+gem 'spree_related_products', github: 'Drakkar-Software/spree_related_products', branch: 'spree4.2'
 gem 'spree_reviews', github: 'Drakkar-Software/spree_reviews', branch: 'spree4'
+
+group :development, :production do
+  gem 'spree_credits', github: 'Drakkar-Software/spree_credits', branch: 'master'
+  gem 'spree_backtesting', github: 'Drakkar-Software/spree_backtesting', branch: 'master'
+  gem 'spree_tentacles', github: 'Drakkar-Software/spree_tentacles', branch: 'spree4.2'
+end
 
 # database
 gem 'activerecord-nulldb-adapter'
+
+# nexus connection: also have it here for sidekiq to have it
+gem 'nexus_api'
 
 gem 'aws-sdk-s3'
 

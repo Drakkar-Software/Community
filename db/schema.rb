@@ -2,15 +2,15 @@
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
 #
-# This file is the source Rails uses to define your schema when running `rails
-# db:schema:load`. When creating a new database, `rails db:schema:load` tends to
+# This file is the source Rails uses to define your schema when running `bin/rails
+# db:schema:load`. When creating a new database, `bin/rails db:schema:load` tends to
 # be faster and is potentially less error prone than running all of your
 # migrations from scratch. Old migrations may fail to apply correctly if those
 # migrations use external dependencies or application code.
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_07_230514) do
+ActiveRecord::Schema.define(version: 2021_06_30_213403) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -86,6 +86,7 @@ ActiveRecord::Schema.define(version: 2021_02_07_230514) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id"
     t.datetime "deleted_at"
+    t.string "label"
     t.index ["country_id"], name: "index_spree_addresses_on_country_id"
     t.index ["deleted_at"], name: "index_spree_addresses_on_deleted_at"
     t.index ["firstname"], name: "index_addresses_on_firstname"
@@ -392,6 +393,8 @@ ActiveRecord::Schema.define(version: 2021_02_07_230514) do
     t.integer "position", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "filterable", default: true, null: false
+    t.index ["filterable"], name: "index_spree_option_types_on_filterable"
     t.index ["name"], name: "index_spree_option_types_on_name"
     t.index ["position"], name: "index_spree_option_types_on_position"
   end
@@ -461,6 +464,7 @@ ActiveRecord::Schema.define(version: 2021_02_07_230514) do
     t.integer "state_lock_version", default: 0, null: false
     t.decimal "taxable_adjustment_total", precision: 10, scale: 2, default: "0.0", null: false
     t.decimal "non_taxable_adjustment_total", precision: 10, scale: 2, default: "0.0", null: false
+    t.boolean "store_owner_notification_delivered"
     t.index ["approver_id"], name: "index_spree_orders_on_approver_id"
     t.index ["bill_address_id"], name: "index_spree_orders_on_bill_address_id"
     t.index ["canceler_id"], name: "index_spree_orders_on_canceler_id"
@@ -495,9 +499,15 @@ ActiveRecord::Schema.define(version: 2021_02_07_230514) do
     t.boolean "auto_capture"
     t.text "preferences"
     t.integer "position", default: 0
-    t.bigint "store_id"
     t.index ["id", "type"], name: "index_spree_payment_methods_on_id_and_type"
-    t.index ["store_id"], name: "index_spree_payment_methods_on_store_id"
+  end
+
+  create_table "spree_payment_methods_stores", id: false, force: :cascade do |t|
+    t.bigint "payment_method_id"
+    t.bigint "store_id"
+    t.index ["payment_method_id", "store_id"], name: "payment_mentod_id_store_id_unique_index", unique: true
+    t.index ["payment_method_id"], name: "index_spree_payment_methods_stores_on_payment_method_id"
+    t.index ["store_id"], name: "index_spree_payment_methods_stores_on_store_id"
   end
 
   create_table "spree_payments", id: :serial, force: :cascade do |t|
@@ -535,6 +545,7 @@ ActiveRecord::Schema.define(version: 2021_02_07_230514) do
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.decimal "compare_at_amount", precision: 10, scale: 2
     t.index ["deleted_at"], name: "index_spree_prices_on_deleted_at"
     t.index ["variant_id", "currency"], name: "index_spree_prices_on_variant_id_and_currency"
     t.index ["variant_id"], name: "index_spree_prices_on_variant_id"
@@ -565,6 +576,7 @@ ActiveRecord::Schema.define(version: 2021_02_07_230514) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "position", default: 0
+    t.boolean "show_property", default: true
     t.index ["position"], name: "index_spree_product_properties_on_position"
     t.index ["product_id"], name: "index_product_properties_on_product_id"
     t.index ["property_id"], name: "index_spree_product_properties_on_property_id"
@@ -589,10 +601,12 @@ ActiveRecord::Schema.define(version: 2021_02_07_230514) do
     t.integer "reviews_count", default: 0, null: false
     t.integer "inventory_relationships_count", default: 0
     t.bigint "tentacle_package_id"
+    t.bigint "profile_id"
     t.index ["available_on"], name: "index_spree_products_on_available_on"
     t.index ["deleted_at"], name: "index_spree_products_on_deleted_at"
     t.index ["discontinue_on"], name: "index_spree_products_on_discontinue_on"
     t.index ["name"], name: "index_spree_products_on_name"
+    t.index ["profile_id"], name: "index_spree_products_on_profile_id"
     t.index ["shipping_category_id"], name: "index_spree_products_on_shipping_category_id"
     t.index ["slug"], name: "index_spree_products_on_slug", unique: true
     t.index ["tax_category_id"], name: "index_spree_products_on_tax_category_id"
@@ -604,8 +618,24 @@ ActiveRecord::Schema.define(version: 2021_02_07_230514) do
     t.integer "taxon_id"
     t.integer "position"
     t.index ["position"], name: "index_spree_products_taxons_on_position"
+    t.index ["product_id", "taxon_id"], name: "index_spree_products_taxons_on_product_id_and_taxon_id", unique: true
     t.index ["product_id"], name: "index_spree_products_taxons_on_product_id"
     t.index ["taxon_id"], name: "index_spree_products_taxons_on_taxon_id"
+  end
+
+  create_table "spree_profiles", force: :cascade do |t|
+    t.bigint "product_id"
+    t.bigint "user_id"
+    t.bigint "tentacles_registry_id"
+    t.string "name"
+    t.string "description"
+    t.string "version"
+    t.boolean "approved", default: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["product_id"], name: "index_spree_profiles_on_product_id"
+    t.index ["tentacles_registry_id"], name: "index_spree_profiles_on_tentacles_registry_id"
+    t.index ["user_id"], name: "index_spree_profiles_on_user_id"
   end
 
   create_table "spree_promotion_action_line_items", id: :serial, force: :cascade do |t|
@@ -1101,6 +1131,17 @@ ActiveRecord::Schema.define(version: 2021_02_07_230514) do
     t.string "facebook"
     t.string "twitter"
     t.string "instagram"
+    t.string "supported_currencies"
+    t.string "default_locale"
+    t.string "customer_support_email"
+    t.integer "default_country_id"
+    t.text "description"
+    t.text "address"
+    t.string "contact_phone"
+    t.string "new_order_notifications_email"
+    t.integer "checkout_zone_id"
+    t.string "seo_robots"
+    t.string "supported_locales"
     t.index "lower((code)::text)", name: "index_spree_stores_on_lower_code", unique: true
     t.index ["default"], name: "index_spree_stores_on_default"
     t.index ["url"], name: "index_spree_stores_on_url"
@@ -1191,6 +1232,7 @@ ActiveRecord::Schema.define(version: 2021_02_07_230514) do
     t.string "url"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "accessibility"
     t.index ["product_id"], name: "index_spree_tentacle_packages_on_product_id"
     t.index ["tentacles_registry_id"], name: "index_spree_tentacle_packages_on_tentacles_registry_id"
   end
@@ -1209,6 +1251,8 @@ ActiveRecord::Schema.define(version: 2021_02_07_230514) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "accessibility"
+    t.string "key"
   end
 
   create_table "spree_tentacles_registries", force: :cascade do |t|
@@ -1260,6 +1304,7 @@ ActiveRecord::Schema.define(version: 2021_02_07_230514) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.decimal "microtransaction_credits", precision: 15, scale: 2
+    t.string "username"
     t.index ["bill_address_id"], name: "index_spree_users_on_bill_address_id"
     t.index ["deleted_at"], name: "index_spree_users_on_deleted_at"
     t.index ["email"], name: "email_idx_unique", unique: true
@@ -1294,6 +1339,27 @@ ActiveRecord::Schema.define(version: 2021_02_07_230514) do
     t.index ["track_inventory"], name: "index_spree_variants_on_track_inventory"
   end
 
+  create_table "spree_wished_products", id: :serial, force: :cascade do |t|
+    t.integer "variant_id"
+    t.integer "wishlist_id"
+    t.text "remark"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "quantity", default: 1, null: false
+  end
+
+  create_table "spree_wishlists", id: :serial, force: :cascade do |t|
+    t.integer "user_id"
+    t.string "name"
+    t.string "access_hash"
+    t.boolean "is_private", default: true, null: false
+    t.boolean "is_default", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id", "is_default"], name: "index_spree_wishlists_on_user_id_and_is_default"
+    t.index ["user_id"], name: "index_spree_wishlists_on_user_id"
+  end
+
   create_table "spree_zone_members", id: :serial, force: :cascade do |t|
     t.string "zoneable_type"
     t.integer "zoneable_id"
@@ -1311,7 +1377,7 @@ ActiveRecord::Schema.define(version: 2021_02_07_230514) do
     t.integer "zone_members_count", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "kind"
+    t.string "kind", default: "state"
     t.index ["default_tax"], name: "index_spree_zones_on_default_tax"
     t.index ["kind"], name: "index_spree_zones_on_kind"
   end

@@ -10,7 +10,7 @@
 # In order to initialize a setting do:
 # config.setting_name = 'new value'
 Spree.config do |config|
-  config.logo = 'octobot.png'
+  config.logo = 'nav_logo.png'
   config.allow_guest_checkout = false
   # Example:
   # Uncomment to stop tracking inventory levels in the application
