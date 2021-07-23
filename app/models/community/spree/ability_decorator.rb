@@ -45,6 +45,7 @@ module Community::Spree
           can :read, ::Spree::Microtransaction
           can :read, ::Spree::InventoryRelationship
           can %i[create read], ::Spree::CreditsPurchase
+          can %i[create read], ::Spree::Donation
         end
 
         can %i[create read], ::Spree::BacktestingRun if defined?(Spree::Backtesting)
