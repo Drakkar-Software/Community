@@ -1,4 +1,4 @@
-FROM ruby:2.6.7-alpine as Builder
+FROM ruby:2.6.8-alpine as Builder
 
 ARG GITHUB_TOKEN
 
