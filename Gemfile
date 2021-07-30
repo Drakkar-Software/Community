@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.6.7'
+ruby '2.6.8'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.1.3', '>= 6.0.3.2'
@@ -41,7 +41,7 @@ group :development, :test do
   gem 'web-console', '>= 3.3.0'
 
   # linter
-  gem 'rubocop', '~> 1.8.1'
+  gem 'rubocop'
   gem 'rubocop-rails'
   gem 'rubocop-rspec'
   gem 'pry-byebug'
@@ -88,7 +88,7 @@ gem 'spree_reviews', github: 'Drakkar-Software/spree_reviews', branch: 'spree4'
 group :development, :production do
   gem 'spree_credits', github: 'Drakkar-Software/spree_credits', branch: 'master'
   gem 'spree_backtesting', github: 'Drakkar-Software/spree_backtesting', branch: 'master'
-  gem 'spree_tentacles', github: 'Drakkar-Software/spree_tentacles', branch: 'spree4.2'
+  gem 'spree_tentacles', github: 'Drakkar-Software/spree_tentacles', branch: 'master'
 end
 
 # database
