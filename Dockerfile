@@ -62,7 +62,7 @@ RUN mv config/credentials.yml.enc.bak config/credentials.yml.enc 2>/dev/null || 
 # Remove folders not needed in resulting image
 RUN rm -rf node_modules tmp/cache vendor/bundle test spec
 
-FROM ruby:2.6.6-alpine
+FROM ruby:2.6.8-alpine
 
 # Add basic packages
 RUN apk add --no-cache \
