@@ -71,12 +71,12 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.default_url_options = { host: host }
   ActionMailer::Base.smtp_settings = {
-    address: 'smtp.sendgrid.net',
+    address: 'ssl0.ovh.net',
     port: '587',
     authentication: :plain,
-    user_name: ENV['SENDGRID_USERNAME'],
-    password: ENV['SENDGRID_PASSWORD'],
-    domain: ENV['HOST_DOMAIN'] || 'heroku.com',
+    user_name: ENV['EMAIL_USERNAME'] || 'do-not-reply@octobot.online',
+    password: ENV['EMAIL_PASSWORD'],
+    domain: host || 'community.octobot.online',
     enable_starttls_auto: true
   }
 
