@@ -74,4 +74,3 @@ networks:
   default:
     external:
       name: gateway
-
