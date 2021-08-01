@@ -135,6 +135,9 @@ jobs:
             # Remove old containers
             docker-compose rm -f
 
+            # Update images
+            docker-compose pull
+
             # Restart the service
             docker-compose -f docker-compose.yml up -d
 
