@@ -31,3 +31,9 @@ bundle exec sidekiq
 ```bash
 bundle exec rake sitemap:refresh
 ```
+
+## Create a new admin
+```bash
+rake spree_auth:admin:create
+```
+Can use `ADMIN_PASSWORD` and `ADMIN_EMAIL` env variables
