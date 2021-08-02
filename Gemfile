@@ -74,6 +74,8 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'binance-ruby', github: 'Drakkar-Software/binance-ruby', branch: 'rails6.0'
 gem 'plotly-rails-js', github: 'Drakkar-Software/plotly-rails-js', branch: 'finance'
 
+gem 'font_awesome5_rails'
+
 # View overrides
 gem 'deface'
 

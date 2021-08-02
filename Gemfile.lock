@@ -354,6 +354,9 @@ GEM
     ffaker (2.18.0)
     ffi (1.15.0)
     flatpickr (4.6.6.0)
+    font_awesome5_rails (1.5.0)
+      nokogiri (>= 1.11.3)
+      railties (>= 4.2)
     friendly_id (5.4.2)
       activerecord (>= 4.0.0)
     fugit (1.4.4)
@@ -674,6 +677,7 @@ DEPENDENCIES
   database_cleaner
   deface
   faker
+  font_awesome5_rails
   jbuilder (~> 2.7)
   listen
   nexus_api
