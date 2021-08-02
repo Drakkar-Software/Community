@@ -4,6 +4,7 @@
 // that code so it'll be compiled.
 
 // Only add libs that are not managed by Sprockets (used by spree)
+import "@fortawesome/fontawesome-free/js/all";
 import '@fortawesome/fontawesome-free/scss/fontawesome.scss';
 import '@fortawesome/fontawesome-free/scss/regular.scss';
 import '@fortawesome/fontawesome-free/scss/solid.scss';
