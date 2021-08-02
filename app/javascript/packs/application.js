@@ -5,9 +5,7 @@
 
 // Only add libs that are not managed by Sprockets (used by spree)
 import "@fortawesome/fontawesome-free/js/all";
-import '@fortawesome/fontawesome-free/scss/fontawesome.scss';
-import '@fortawesome/fontawesome-free/scss/regular.scss';
-import '@fortawesome/fontawesome-free/scss/solid.scss';
+import "@fortawesome/fontawesome-free/css/all";
 
 // Uncomment to copy all static images under ../images to the output folder and reference
 // them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)
