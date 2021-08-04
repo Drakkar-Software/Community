@@ -176,7 +176,9 @@ jobs:
 
             # Update image version
             VERSION=${GITHUB_REF##*/}
-            sed -i -- 's/IMAGE_TAG=.*/IMAGE_TAG=$VERSION/g' .env
+            echo $VERSION
+            
+            sed -i -- "s/IMAGE_TAG=.*/IMAGE_TAG=$VERSION/g" .env
 
             # Stop the service
             docker-compose stop
