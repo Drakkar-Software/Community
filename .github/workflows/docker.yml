@@ -177,6 +177,8 @@ jobs:
             # Update image version
             VERSION=${GITHUB_REF##*/}
             echo $VERSION
+            echo $GITHUB_REF
+            echo $GITHUB_HEAD_REF
             
             sed -i -- "s/IMAGE_TAG=.*/IMAGE_TAG=$VERSION/g" .env
 
