@@ -116,14 +116,24 @@ jobs:
 
       - name: Deploy to staging via SSH action
         uses: appleboy/ssh-action@v0.1.3
+        env:
+          GITHUB_REF: ${{ github.ref }}
+          GITHUB_HEAD_REF: ${{ github.head_ref }}
+          WORK_DIR: ${{ secrets.WORKING_DIR }}
         with:
           HOST: ${{ secrets.HOST }}
           USERNAME: ${{ secrets.USERNAME }}
           PASSWORD: ${{ secrets.PASSWORD }}
           PORT: ${{ secrets.PORT }}
+          envs: GITHUB_REF,GITHUB_HEAD_REF,WORK_DIR
           script: |
             # Move to working directory
             cd ${{ secrets.WORKING_DIR }}
+
+            pwd
+            echo $GITHUB_REF
+            echo $GITHUB_HEAD_REF
+            echo $WORK_DIR
 
             # Update image version
             sed -i -- 's/IMAGE_TAG=.*/IMAGE_TAG=latest/g' .env
@@ -165,14 +175,24 @@ jobs:
 
       - name: Deploy to production via SSH action
         uses: appleboy/ssh-action@v0.1.3
+        env:
+          GITHUB_REF: ${{ github.ref }}
+          GITHUB_HEAD_REF: ${{ github.head_ref }}
+          WORK_DIR: ${{ secrets.WORKING_DIR }}
         with:
           HOST: ${{ secrets.HOST }}
           USERNAME: ${{ secrets.USERNAME }}
           PASSWORD: ${{ secrets.PASSWORD }}
           PORT: ${{ secrets.PORT }}
+          envs: GITHUB_REF,GITHUB_HEAD_REF,WORK_DIR
           script: |
             # Move to working directory
             cd ${{ secrets.WORKING_DIR }}
+
+            pwd
+            echo $GITHUB_REF
+            echo $GITHUB_HEAD_REF
+            echo $WORK_DIR
 
             # Update image version
             VERSION=${GITHUB_REF##*/}
