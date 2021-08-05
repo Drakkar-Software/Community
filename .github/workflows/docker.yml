@@ -119,21 +119,18 @@ jobs:
         env:
           GITHUB_REF: ${{ github.ref }}
           GITHUB_HEAD_REF: ${{ github.head_ref }}
-          WORK_DIR: ${{ secrets.WORKING_DIR }}
         with:
           HOST: ${{ secrets.HOST }}
           USERNAME: ${{ secrets.USERNAME }}
           PASSWORD: ${{ secrets.PASSWORD }}
           PORT: ${{ secrets.PORT }}
-          envs: GITHUB_REF,GITHUB_HEAD_REF,WORK_DIR
+          envs: GITHUB_REF,GITHUB_HEAD_REF
           script: |
             # Move to working directory
             cd ${{ secrets.WORKING_DIR }}
 
-            pwd
             echo $GITHUB_REF
             echo $GITHUB_HEAD_REF
-            echo $WORK_DIR
 
             # Update image version
             sed -i -- 's/IMAGE_TAG=.*/IMAGE_TAG=latest/g' .env
@@ -178,27 +175,22 @@ jobs:
         env:
           GITHUB_REF: ${{ github.ref }}
           GITHUB_HEAD_REF: ${{ github.head_ref }}
-          WORK_DIR: ${{ secrets.WORKING_DIR }}
         with:
           HOST: ${{ secrets.HOST }}
           USERNAME: ${{ secrets.USERNAME }}
           PASSWORD: ${{ secrets.PASSWORD }}
           PORT: ${{ secrets.PORT }}
-          envs: GITHUB_REF,GITHUB_HEAD_REF,WORK_DIR
+          envs: GITHUB_REF,GITHUB_HEAD_REF
           script: |
             # Move to working directory
             cd ${{ secrets.WORKING_DIR }}
 
-            pwd
             echo $GITHUB_REF
             echo $GITHUB_HEAD_REF
-            echo $WORK_DIR
 
             # Update image version
             VERSION=${GITHUB_REF##*/}
             echo $VERSION
-            echo $GITHUB_REF
-            echo $GITHUB_HEAD_REF
             
             sed -i -- "s/IMAGE_TAG=.*/IMAGE_TAG=$VERSION/g" .env
 
