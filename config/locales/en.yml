@@ -32,12 +32,20 @@
 en:
   spree:
 
+    octobot: OctoBot
+
     navbar:
       title: OctoBot Community
 
     home_page:
       banner_message: Augment your OctoBot with the community tentacles
       discover: Coming soon
+      register: Register
+      my_profile: My profile
+      soon_on_community: "Soon on OctoBot Community"
+      explore_profiles: "Explore and use popular profiles from the OctoBot community directly on your OctoBot."
+      discover_tentacles: "Discover community created tentacles and included them in your OctoBot."
+
 
     # product
     tentacle_activation: Tentacles activation

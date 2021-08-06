@@ -12,8 +12,14 @@
       <%= Spree.t('home_page.banner_message') %>
     </div>
     <div>
-      <%= link_to Spree.t(:'home_page.discover'), spree.root_path, class: 'btn btn-primary spree-btn px-5' %>
+      <% if spree_current_user %>
+        <%= link_to Spree.t(:'home_page.my_profile'), spree.account_path, class: 'btn btn-primary spree-btn px-5' %>
+    <% else %>
+        <%= link_to Spree.t(:'home_page.register'), spree_signup_path, class: 'btn btn-primary spree-btn px-5' %>
+    <% end %>
     </div>
     <%# end override %>
   </div>
 </div>
+
+<%= render 'spree/home/preview' %>
