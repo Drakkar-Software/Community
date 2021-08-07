@@ -64,8 +64,10 @@ services:
     restart: always
     healthcheck:
       test: ["CMD-SHELL", "nc -z 127.0.0.1 3000 || exit 1"]
-      interval: 5m
-      start_period: 1m
+      interval: 5s
+      timeout: 3s
+      retries: 10
+      start_period: 30s
 
   cache:
     image: memcached:1.6.10-alpine
