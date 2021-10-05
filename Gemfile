@@ -91,6 +91,7 @@ group :production do
   gem 'spree_credits', github: 'Drakkar-Software/spree_credits', branch: 'master'
   gem 'spree_backtesting', github: 'Drakkar-Software/spree_backtesting', branch: 'master'
   gem 'spree_tentacles', github: 'Drakkar-Software/spree_tentacles', branch: 'master'
+  gem 'spree_user_data', github: 'Drakkar-Software/spree_user_data', branch: 'master'
 end
 
 # database
