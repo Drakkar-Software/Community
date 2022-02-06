@@ -1,0 +1,24 @@
+FROM ruby:3.0.2-alpine
+
+ARG GITHUB_TOKEN
+
+# Add basic packages
+RUN apk add --no-cache build-base postgresql-dev  git nodejs yarn tzdata file
+
+WORKDIR /app
+
+# Setup bundler
+RUN gem install bundler -v "~>2.2.33" && \
+    bundle config --local GITHUB__COM x-oauth-basic:$GITHUB_TOKEN
+
+# Install standard Node modules
+COPY package.json yarn.lock /app/
+RUN yarn install --frozen-lockfile
+
+# Copy the entire app
+COPY . /app/
+
+# Install gems
+RUN bundle install -j4 --retry 3
+
+EXPOSE 3000

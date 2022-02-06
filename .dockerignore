@@ -1,0 +1,7 @@
+# Should be ignored
+.idea
+.git
+
+# development using docker
+data
+

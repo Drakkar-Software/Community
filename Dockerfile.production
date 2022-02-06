@@ -1,4 +1,4 @@
-FROM ruby:2.6.8-alpine as Builder
+FROM ruby:3.0.2-alpine as Builder
 
 ARG GITHUB_TOKEN
 
@@ -20,7 +20,7 @@ RUN yarn install --frozen-lockfile
 
 # Install standard gems
 COPY Gemfile* /app/
-RUN gem install bundler -v "~>2.0.2" && \
+RUN gem install bundler -v "~>2.2.33" && \
     bundle config --local GITHUB__COM x-oauth-basic:$GITHUB_TOKEN && \
     bundle config --local frozen 1 && \
     bundle config --local build.sassc --disable-march-tune-native && \
@@ -62,7 +62,7 @@ RUN mv config/credentials.yml.enc.bak config/credentials.yml.enc 2>/dev/null || 
 # Remove folders not needed in resulting image
 RUN rm -rf node_modules tmp/cache vendor/bundle test spec
 
-FROM ruby:2.6.8-alpine
+FROM ruby:3.0.2-alpine
 
 # Add basic packages
 RUN apk add --no-cache \
