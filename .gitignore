@@ -29,6 +29,7 @@ config/master.key
 # TODO Comment out these rules if environment variables can be committed
 .env
 .env.*
+!.env.*.sample
 
 ## Environment normalization:
 /.bundle
@@ -71,3 +72,17 @@ yarn-debug.log*
 /public/uploads
 /public/sitemap*
 .rakeTasks
+
+# React on Rails
+npm-debug.log
+npm-debug.log*
+node_modules
+
+# Generated js bundles
+/app/assets/webpack/
+/app/assets/builds/*
+!/app/assets/builds/.keep
+
+# development using docker
+data
+engines
