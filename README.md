@@ -17,6 +17,12 @@ Import dummy data
 bundle exec spree_sample:load
 ```
 
+Install JS dependencies
+```bash
+yarn install
+yarn build
+```
+
 ## Run the website
 ```bash
 rails s
