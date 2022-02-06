@@ -1,37 +1,34 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.6.8'
+ruby '3.0.2'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 6.1.3', '>= 6.0.3.2'
+gem 'rails', '~> 6.1.4'
 # Use postgresql as the database for Active Record
 gem 'pg'
 # Use Puma as the app server
-gem 'puma', '~> 4.1'
+gem 'puma'
 # Use SCSS for stylesheets
 gem 'sass-rails', '>= 6'
-# Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
-gem 'webpacker', '~> 4.0'
-# Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
-gem 'turbolinks', '~> 5'
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.7'
-# Use CoffeeScript for .coffee assets and views
-gem 'coffee-rails'
-# Use Redis adapter to run Action Cable in production
-# gem 'redis', '~> 4.0'
-# Use Active Model has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
-
-# bundler
-gem 'bundler', '~>2.0.0'
-
-# Use Active Storage variant
-# gem 'image_processing', '~> 1.2'
+# petty print
+gem 'awesome_print'
 
 # Reduces boot times through caching; required in config/boot.rb
-gem 'bootsnap', '>= 1.4.2', require: false
+gem 'bootsnap', require: false
+# caching
+gem 'dalli' # memcache
+gem 'rack-cache' # http caching
+# Rack CORS Middleware
+gem 'rack-cors'
+# improved JSON rendering performance
+gem 'oj'
+
+# database
+gem 'activerecord-nulldb-adapter'
+
+# bundler
+gem 'bundler', '~>2.2.33'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -50,6 +47,13 @@ group :development, :test do
 
   # required to listen to file changes in rails 6.1+
   gem 'listen'
+
+  # monitoring
+  gem 'bullet'
+  gem 'rack-mini-profiler', require: false
+  gem 'flamegraph'
+  gem 'stackprof'
+  gem 'memory_profiler'
 end
 
 group :test do
@@ -71,37 +75,29 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-gem 'binance-ruby', github: 'Drakkar-Software/binance-ruby', branch: 'rails6.0'
-gem 'plotly-rails-js', github: 'Drakkar-Software/plotly-rails-js', branch: 'finance'
-
-gem 'font_awesome5_rails'
-
-# View overrides
-gem 'deface'
-
 # Spree
-gem 'spree', github: 'Drakkar-Software/spree', branch: 'spree4.2'
-gem 'spree_auth_devise', github: 'Drakkar-Software/spree_auth_devise', branch: 'spree4.2'
-gem 'spree_gateway', github: 'Drakkar-Software/spree_gateway', branch: 'spree4.2'
-gem 'spree_sitemap', github: 'Drakkar-Software/spree_sitemap', branch: 'master'
-gem 'spree_related_products', github: 'Drakkar-Software/spree_related_products', branch: 'spree4.2'
-gem 'spree_reviews', github: 'Drakkar-Software/spree_reviews', branch: 'spree4'
+spree_opts = '>= 4.4.0rc1'
+gem 'spree', spree_opts
+gem 'spree_emails', spree_opts
+gem 'spree_backend', spree_opts
+gem 'spree_gateway'
+gem 'spree_auth_devise'
+gem 'spree_i18n', '>= 5.0'
 
-group :production do
-  gem 'spree_credits', github: 'Drakkar-Software/spree_credits', branch: 'master'
-  gem 'spree_backtesting', github: 'Drakkar-Software/spree_backtesting', branch: 'master'
-  gem 'spree_tentacles', github: 'Drakkar-Software/spree_tentacles', branch: 'master'
-end
+gem 'spree_sitemap', github: 'spree-contrib/spree_sitemap'
+# gem 'spree_related_products', github: 'spree-contrib/spree_related_products'
+# gem 'spree_reviews', github: 'spree-contrib/spree_reviews'
+# gem 'spree_product_assembly', github: 'spree-contrib/spree-product-assembly'
 
-# database
-gem 'activerecord-nulldb-adapter'
-
-# nexus connection: also have it here for sidekiq to have it
-gem 'nexus_api'
-
+# aws services
 gem 'aws-sdk-s3'
+gem 'aws-sdk-elasticbeanstalk'
+gem 'aws-sdk-lambda'
+gem 'aws-sdk-route53'
 
-# Keep 5.X versions to ensure compatibility with heroku free redis database
-# On heroku: "You are connecting to Redis v3.2.12, Sidekiq requires Redis v4.0.0 or greater"
-gem 'sidekiq', '~> 5.2'
-gem "sidekiq-cron", "~> 1.1"
+# jobs
+gem 'sidekiq'
+gem 'sidekiq-scheduler', '~> 3.1.0'
+
+# cryptocurrencies price
+gem 'binance-ruby', github: 'Drakkar-Software/binance-ruby', branch: 'rails6.0'
