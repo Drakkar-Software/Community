@@ -1,0 +1,12 @@
+---
+:concurrency: 5
+:queues:
+  - default
+  - mailers
+  - active_storage_analysis
+  - spree_webhooks
+
+:schedule:
+  hosting_refresh_deployments_job:
+    cron: '0 * * * * *'   # Runs once per minute
+    class: Spree::Hosting::HostingRefreshDeploymentsJob

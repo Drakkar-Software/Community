@@ -1,3 +1,3 @@
 Sidekiq.configure_server do |_config|
-  Sidekiq::Logging.logger.level = Logger::DEBUG
+  Sidekiq.logger.level = Logger::Severity::DEBUG
 end

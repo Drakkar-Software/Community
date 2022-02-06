@@ -1,4 +1,3 @@
-require 'sidekiq/web'
 Rails.application.routes.draw do
   # This line mounts Spree's routes at the root of your application.
   # This means, any requests to URLs such as /products, will go to
@@ -9,6 +8,8 @@ Rails.application.routes.draw do
   # We ask that you don't use the :as option here, as Spree relies on it being
   # the default of "spree".
   mount Spree::Core::Engine, at: '/'
+
+  root to: redirect('/404') # redirect / instead of rails welcome
 
   if Rails.env.production?
     Sidekiq::Web.use Rack::Auth::Basic do |username, password|
@@ -21,6 +22,14 @@ Rails.application.routes.draw do
         ActiveSupport::SecurityUtils.secure_compare(::Digest::SHA256.hexdigest(password), ::Digest::SHA256.hexdigest(ENV['SIDEKIQ_PASSWORD']))
     end
   end
+
+  # sidekiq web UI
+  require 'sidekiq/web'
+  Sidekiq::Web.use Rack::Auth::Basic do |username, password|
+    username == Rails.application.secrets.sidekiq_username &&
+      password == Rails.application.secrets.sidekiq_password
+  end
   mount Sidekiq::Web, at: '/admin/sidekiq'
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
