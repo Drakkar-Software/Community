@@ -1,1 +1,4 @@
-Devise.secret_key = '25307a0cc2884a7a52274cadb1de6409e8984f41ee112300ecdbbafa0a03016bb99df3e4a7c3cc50b1de4a610a484f7f9b05'
+Devise.secret_key = Rails.application.secrets.secret_key_base
+if defined?(Spree::Auth)
+  Spree::Auth::Config.signout_after_password_change = false
+end
