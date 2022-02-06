@@ -17,9 +17,6 @@ Spree.config do |config|
   # config.track_inventory_levels = false
 end
 
-# spree_reviews settings
-Spree::Reviews::Config[:feedback_rating] = false
-
 # Configure Spree Dependencies
 #
 # Note: If a dependency is set here it will NOT be stored within the cache & database upon initialization.
