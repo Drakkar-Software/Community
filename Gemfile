@@ -79,7 +79,7 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # Spree
-spree_opts = '>= 4.4.0rc1'
+spree_opts = '~> 4.4.0rc1'
 gem 'spree', spree_opts
 gem 'spree_emails', spree_opts
 gem 'spree_backend', spree_opts

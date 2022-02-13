@@ -310,6 +310,7 @@ ActiveRecord::Schema.define(version: 2022_02_06_152007) do
     t.string "uuid"
     t.string "origin_url"
     t.string "url"
+    t.string "name"
     t.integer "status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
