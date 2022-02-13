@@ -6,6 +6,7 @@ class CreateSpreeDeployments < ActiveRecord::Migration[6.1]
       t.string :uuid
       t.string :origin_url
       t.string :url
+      t.string :name
       t.integer :status
 
       t.timestamps
