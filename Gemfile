@@ -79,7 +79,7 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # Spree
-spree_opts = '~> 4.4.0rc1'
+spree_opts = '~> 4.4.0'
 gem 'spree', spree_opts
 gem 'spree_emails', spree_opts
 gem 'spree_backend', spree_opts
@@ -101,6 +101,3 @@ gem 'aws-sdk-route53'
 # jobs
 gem 'sidekiq'
 gem 'sidekiq-scheduler', '~> 3.1.0'
-
-# cryptocurrencies price
-gem 'binance-ruby', github: 'Drakkar-Software/binance-ruby', branch: 'rails6.0'
