@@ -87,16 +87,8 @@ gem 'spree_gateway'
 gem 'spree_auth_devise'
 gem 'spree_i18n', '>= 5.0'
 
+# Spree contribs
 gem 'spree_sitemap', github: 'spree-contrib/spree_sitemap'
-# gem 'spree_related_products', github: 'spree-contrib/spree_related_products'
-# gem 'spree_reviews', github: 'spree-contrib/spree_reviews'
-# gem 'spree_product_assembly', github: 'spree-contrib/spree-product-assembly'
-
-# aws services
-gem 'aws-sdk-s3'
-gem 'aws-sdk-elasticbeanstalk'
-gem 'aws-sdk-lambda'
-gem 'aws-sdk-route53'
 
 # jobs
 gem 'sidekiq'
