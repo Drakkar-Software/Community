@@ -3,6 +3,8 @@ class CreateSpreeDeployments < ActiveRecord::Migration[6.1]
   def change
     create_table :spree_deployments do |t|
       t.belongs_to :host
+      t.belongs_to :user
+      t.belongs_to :product
       t.string :uuid
       t.string :origin_url
       t.string :url
