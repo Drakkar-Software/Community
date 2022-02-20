@@ -1,10 +1,11 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-
+# Official engine seeds
 Spree::Core::Engine.load_seed if defined?(Spree::Core)
 Spree::Auth::Engine.load_seed if defined?(Spree::Auth)
+
+# Drakkar-Software's engine seeds
+SpreeCloud::Engine.load_seed if defined?(SpreeCloud)
+SpreeDonations::Engine.load_seed if defined?(SpreeDonations)
+
+# Create frontend mandatory taxonomies
+Spree::Taxonomy.create([{ name: "Categories", store: Spree::Store.current },
+                        { name: "Brands", store: Spree::Store.current }])
