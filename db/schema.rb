@@ -308,7 +308,7 @@ ActiveRecord::Schema.define(version: 2022_02_20_095847) do
   create_table "spree_deployments", force: :cascade do |t|
     t.bigint "host_id"
     t.bigint "user_id"
-    t.bigint "product_id"
+    t.bigint "order_id"
     t.string "uuid"
     t.string "origin_url"
     t.string "url"
@@ -317,7 +317,7 @@ ActiveRecord::Schema.define(version: 2022_02_20_095847) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["host_id"], name: "index_spree_deployments_on_host_id"
-    t.index ["product_id"], name: "index_spree_deployments_on_product_id"
+    t.index ["order_id"], name: "index_spree_deployments_on_order_id"
     t.index ["user_id"], name: "index_spree_deployments_on_user_id"
   end
 
