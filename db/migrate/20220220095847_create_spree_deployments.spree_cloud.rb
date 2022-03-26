@@ -1,4 +1,3 @@
-# This migration comes from spree_cloud (originally 20211215154349)
 class CreateSpreeDeployments < ActiveRecord::Migration[6.1]
   def change
     create_table :spree_deployments do |t|
@@ -14,5 +13,8 @@ class CreateSpreeDeployments < ActiveRecord::Migration[6.1]
 
       t.timestamps
     end
+
+    add_index :spree_deployments, :user_id
+    add_index :spree_deployments, :order_id
   end
 end
