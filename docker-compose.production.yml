@@ -32,8 +32,8 @@ services:
       - "./redis-data:/var/lib/redis"
       - "./redis.conf:/usr/local/etc/redis/redis.conf"
 
-  web:
-    image: octobotservers/community:${IMAGE_TAG}
+  api:
+    image: herklos/community2:latest-backend
     labels:
       - "traefik.enable=true"
       - "traefik.port=3000"
@@ -54,11 +54,13 @@ services:
       timeout: 5s
       retries: 10
       start_period: 30s
+    networks:
+      - gateway
 
   cache:
     image: memcached:1.6.12-alpine
 
 networks:
-  default:
+  gateway:
     external:
       name: gateway

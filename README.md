@@ -19,7 +19,7 @@ bundle exec spree_sample:load
 
 Install JS dependencies
 ```bash
-yarn install
+yarn install --frozen-lockfile
 yarn build
 ```
 
