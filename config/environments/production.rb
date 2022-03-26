@@ -29,7 +29,7 @@ Rails.application.configure do
   # config.assets.css_compressor = :sass
 
   # Minimize JS code
-  config.assets.js_compressor = :terser
+  # config.assets.js_compressor = :terser
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
   config.assets.compile = true
@@ -42,7 +42,7 @@ Rails.application.configure do
   # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for NGINX
 
   # Store uploaded files on the local file system (see config/storage.yml for options).
-  if ENV['BUCKETEER_AWS_ACCESS_KEY_ID'].present? && ENV['BUCKETEER_AWS_SECRET_ACCESS_KEY'].present?
+  if ENV['STORAGE_AWS_ACCESS_KEY_ID'].present? && ENV['STORAGE_SECRET_ACCESS_KEY'].present?
     config.active_storage.service = :amazon
   else
     config.active_storage.service = :local
@@ -116,7 +116,7 @@ Rails.application.configure do
   end
 
   # fix for fonts CORS issues with CloudFront
-  config.font_assets.origin = '*'
+  # config.font_assets.origin = '*'
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
