@@ -61,3 +61,10 @@ en:
     cloud_backtesting_key: Cloud backtesting server API-KEY
     cloud_candles_bucket: Cloud candles aws bucket name
     mock_cloud_backtesting: Enable cloud backtesting mock
+
+    # promotions
+    promotion_action_types:
+      give_store_credit:
+        description: Gives the user store credit of the amount specified
+        name: Give store credit
+    preferred_amount: preferred amount
