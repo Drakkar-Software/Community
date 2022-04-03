@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_21_200613) do
+ActiveRecord::Schema.define(version: 2022_04_03_212034) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -349,6 +349,7 @@ ActiveRecord::Schema.define(version: 2022_03_21_200613) do
 
   create_table "spree_donations", force: :cascade do |t|
     t.decimal "amount", precision: 19, scale: 9, default: "0.0"
+    t.decimal "dollar_value", default: "0.0"
     t.string "currency"
     t.string "blockchain"
     t.string "transaction_id"
