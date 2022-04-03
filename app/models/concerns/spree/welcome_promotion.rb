@@ -3,12 +3,12 @@ module Spree
     extend ActiveSupport::Concern
 
     def trigger_welcome_promotions
-      welcome_promotion_category.promotions.each do |promotion|
+      WelcomePromotion.welcome_promotion_category.promotions.each do |promotion|
         activate_promotion promotion
       end
     end
 
-    def welcome_promotion_category
+    def self.welcome_promotion_category
       Spree::PromotionCategory.find_or_create_by!(name: "Welcome")
     end
 
