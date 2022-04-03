@@ -31,9 +31,6 @@ if Spree::PaymentMethod::StoreCredit.available.first.nil?
 end
 
 # Add signup promotions
-welcome_promotion_category = Spree::PromotionCategory.find_or_create_by!(
-  name: Spree::User::WELCOME_PROMOTION_CATEGORY_NAME
-)
 signup_promotion_name = "Free credits at signup"
 if Spree::Promotion.find_by(name: signup_promotion_name).nil?
   # Impossible to use find_or_create with stores
@@ -51,11 +48,11 @@ if Spree::Promotion.find_by(name: signup_promotion_name).nil?
           type: Spree::Promotion::Rules::OneUsePerUser
         )
       ],
-      promotion_category: welcome_promotion_category
+      promotion_category: Spree::WelcomePromotion.welcome_promotion_category
     }
   )
 end
 
 # Drakkar-Software's engine seeds
-SpreeCloud::Engine.load_seed if defined?(SpreeCloud)
-SpreeDonations::Engine.load_seed if defined?(SpreeDonations)
+Spree::Cloud::Engine.load_seed if defined?(Spree::Cloud)
+Spree::Donations::Engine.load_seed if defined?(Spree::Donations)
