@@ -90,6 +90,10 @@ gem 'spree_i18n', '>= 5.0'
 # Spree contribs
 gem 'spree_sitemap', github: 'spree-contrib/spree_sitemap'
 
+# Drakkar Software's engines
+gem 'spree_donations', path: 'engines/spree_donations'
+gem 'spree_cloud', path: 'engines/spree_cloud'
+
 # jobs
 gem 'sidekiq'
 gem 'sidekiq-scheduler', '~> 3.1.0'
