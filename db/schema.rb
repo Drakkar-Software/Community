@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_04_202035) do
+ActiveRecord::Schema.define(version: 2022_04_11_153354) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -367,6 +367,16 @@ ActiveRecord::Schema.define(version: 2022_04_04_202035) do
     t.index ["user_id"], name: "index_spree_donations_users_on_user_id"
   end
 
+  create_table "spree_feed_users", force: :cascade do |t|
+    t.bigint "feed_id"
+    t.bigint "user_id"
+    t.boolean "is_publisher", default: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["feed_id"], name: "index_spree_feed_users_on_feed_id"
+    t.index ["user_id"], name: "index_spree_feed_users_on_user_id"
+  end
+
   create_table "spree_feedback_reviews", id: :serial, force: :cascade do |t|
     t.integer "user_id"
     t.integer "review_id", null: false
@@ -377,6 +387,15 @@ ActiveRecord::Schema.define(version: 2022_04_04_202035) do
     t.string "locale", default: "en"
     t.index ["review_id"], name: "index_spree_feedback_reviews_on_review_id"
     t.index ["user_id"], name: "index_spree_feedback_reviews_on_user_id"
+  end
+
+  create_table "spree_feeds", force: :cascade do |t|
+    t.bigint "product_id"
+    t.string "uuid"
+    t.string "version"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["product_id"], name: "index_spree_feeds_on_product_id"
   end
 
   create_table "spree_gateways", id: :serial, force: :cascade do |t|
@@ -505,6 +524,19 @@ ActiveRecord::Schema.define(version: 2022_04_04_202035) do
     t.index ["locale"], name: "index_spree_menus_on_locale"
     t.index ["store_id", "location", "locale"], name: "index_spree_menus_on_store_id_and_location_and_locale", unique: true
     t.index ["store_id"], name: "index_spree_menus_on_store_id"
+  end
+
+  create_table "spree_messages", force: :cascade do |t|
+    t.bigint "feed_id"
+    t.bigint "user_id"
+    t.string "uuid"
+    t.text "value"
+    t.string "version"
+    t.string "topic"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["feed_id"], name: "index_spree_messages_on_feed_id"
+    t.index ["user_id"], name: "index_spree_messages_on_user_id"
   end
 
   create_table "spree_microtransactions", id: :serial, force: :cascade do |t|
@@ -1248,18 +1280,6 @@ ActiveRecord::Schema.define(version: 2022_04_04_202035) do
     t.index ["shipment_id"], name: "index_spree_shipping_rates_on_shipment_id"
     t.index ["shipping_method_id"], name: "index_spree_shipping_rates_on_shipping_method_id"
     t.index ["tax_rate_id"], name: "index_spree_shipping_rates_on_tax_rate_id"
-  end
-
-  create_table "spree_signals", force: :cascade do |t|
-    t.bigint "product_id"
-    t.bigint "user_id"
-    t.string "uuid"
-    t.text "value"
-    t.string "version"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["product_id"], name: "index_spree_signals_on_product_id"
-    t.index ["user_id"], name: "index_spree_signals_on_user_id"
   end
 
   create_table "spree_state_changes", id: :serial, force: :cascade do |t|
