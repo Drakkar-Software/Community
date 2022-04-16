@@ -87,3 +87,12 @@ node_modules
 # development using docker
 data
 engines
+
+# terraform
+.terraform
+.terraform.lock.hcl
+generated
+*.tfstate*
+
+*.nomad
+*.hcl
