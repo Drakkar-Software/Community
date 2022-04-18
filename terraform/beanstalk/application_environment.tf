@@ -66,11 +66,11 @@ module "elastic_beanstalk_environment" {
   additional_settings = var.additional_settings
   env_vars            = {
     "PRODUCTION_DATABASE" = var.database_name
-    "DATABASE_HOST"       = module.rds_instance.instance_address
+    "DATABASE_HOST"       = module.rds_instance.instance_endpoint
     "DATABASE_PORT"       = var.database_port
     "DATABASE_USERNAME"   = var.database_user
     "DATABASE_PASSWORD"   = var.database_password
-    "REDIS_URL"           = "redis://${module.redis.host}:6379/1"
+    "REDIS_URL"           = "redis://${module.redis.endpoint}/1"
     "SECRET_KEY_BASE"     = var.app_secret_key_base
     "RAILS_MAX_THREADS"   = var.rails_max_thread
     "RAILS_ENV"           = var.rails_env
