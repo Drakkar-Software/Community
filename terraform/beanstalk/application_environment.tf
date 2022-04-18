@@ -2,6 +2,7 @@ module "elastic_beanstalk_environment" {
   source = "cloudposse/elastic-beanstalk-environment/aws"
   version = "0.46.0"
 
+  name                       = var.environment_name
   description                = var.description
   region                     = var.region
   availability_zone_selector = var.availability_zone_selector
@@ -11,11 +12,14 @@ module "elastic_beanstalk_environment" {
   wait_for_ready_timeout             = var.wait_for_ready_timeout
   elastic_beanstalk_application_name = module.elastic_beanstalk_application.elastic_beanstalk_application_name
   environment_type                   = var.environment_type
-  loadbalancer_type                  = var.loadbalancer_type
   elb_scheme                         = var.elb_scheme
   tier                               = var.tier
   version_label                      = aws_elastic_beanstalk_application_version.application_version.name
   force_destroy                      = var.force_destroy
+
+  loadbalancer_type                  = var.loadbalancer_type
+  loadbalancer_certificate_arn       = var.loadbalancer_certificate_arn
+  loadbalancer_subnets               = module.subnets.public_subnet_ids
 
   instance_type    = var.instance_type
   root_volume_size = var.root_volume_size
@@ -32,7 +36,6 @@ module "elastic_beanstalk_environment" {
   autoscale_upper_increment = var.autoscale_upper_increment
 
   vpc_id               = module.vpc.vpc_id
-  loadbalancer_subnets = module.subnets.public_subnet_ids
   application_subnets  = module.subnets.private_subnet_ids
 
   allow_all_egress = true

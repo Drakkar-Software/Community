@@ -2,6 +2,7 @@ module "rds_instance" {
   source  = "cloudposse/rds/aws"
   version = "0.38.4"
 
+  name                 = "${var.name}-${var.stage}"
   database_name        = var.database_name
   database_user        = var.database_user
   database_password    = var.database_password
