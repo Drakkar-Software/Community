@@ -22,7 +22,7 @@ resource "aws_s3_object" "application_bucket_object" {
 resource "aws_elastic_beanstalk_application_version" "application_version" {
   name        = var.version_label
   application = module.elastic_beanstalk_application.elastic_beanstalk_application_name
-  description = var.version_description
+  description = var.version_label
   bucket      = aws_s3_bucket.application_bucket.id
   key         = aws_s3_object.application_bucket_object.id
 }

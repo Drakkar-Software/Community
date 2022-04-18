@@ -2,6 +2,7 @@ module "redis" {
   source = "cloudposse/elasticache-redis/aws"
   version = "0.42.0"
 
+  name                       = "${var.name}-${var.stage}"
   availability_zones         = var.availability_zones
   zone_id                    = var.dns_zone_id
   vpc_id                     = module.vpc.vpc_id

@@ -8,6 +8,11 @@ variable "availability_zones" {
   description = "List of availability zones"
 }
 
+variable "environment_name" {
+  type        = string
+  description = "The environment nave"
+}
+
 variable "description" {
   type        = string
   description = "Short description of the Environment"
@@ -21,6 +26,11 @@ variable "environment_type" {
 variable "loadbalancer_type" {
   type        = string
   description = "Load Balancer type, e.g. 'application' or 'classic'"
+}
+
+variable "loadbalancer_certificate_arn" {
+  type        = string
+  description = "Load Balancer SSL certificate ARN. The certificate must be present in AWS Certificate Manager"
 }
 
 variable "dns_zone_id" {
@@ -71,11 +81,6 @@ variable "tier" {
 variable "version_label" {
   type        = string
   description = "Elastic Beanstalk Application version to deploy"
-}
-
-variable "version_description" {
-  type        = string
-  description = "Elastic Beanstalk Application version description"
 }
 
 variable "force_destroy" {
