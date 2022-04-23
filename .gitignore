@@ -89,10 +89,14 @@ data
 engines
 
 # terraform
-.terraform
-.terraform.lock.hcl
+*.terraform
+*.terraform.*
+*.tfstate
+*.tfstate.*
+*.tfvars
 generated
-*.tfstate*
 
 *.nomad
 *.hcl
+
+*.zip
