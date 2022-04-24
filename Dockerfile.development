@@ -3,7 +3,7 @@ FROM ruby:3.0.2-alpine
 ARG GITHUB_TOKEN
 
 # Add basic packages
-RUN apk add --no-cache build-base postgresql-dev git nodejs yarn tzdata file npm
+RUN apk add --no-cache build-base postgresql-dev git nodejs yarn tzdata file npm terraform
 
 WORKDIR /app
 
