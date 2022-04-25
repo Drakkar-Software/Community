@@ -22,3 +22,6 @@ COPY . /app/
 RUN bundle install -j4 --retry 3
 
 EXPOSE 3000
+
+# Start up
+CMD ["docker/startup.sh"]

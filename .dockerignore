@@ -3,4 +3,7 @@
 .git
 
 # development using docker
+log
+tmp
 data
+engines
