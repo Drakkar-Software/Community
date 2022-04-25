@@ -7,6 +7,9 @@ RUN apk add --no-cache build-base postgresql-dev git nodejs yarn tzdata file npm
 
 WORKDIR /app
 
+# Expose Puma port
+EXPOSE 3000
+
 # Setup bundler
 RUN gem install bundler -v "~>2.2.33" && \
     bundle config --local GITHUB__COM x-oauth-basic:$GITHUB_TOKEN
@@ -21,7 +24,7 @@ COPY . /app/
 # Install gems
 RUN bundle install -j4 --retry 3
 
-EXPOSE 3000
+RUN mkdir -p tmp/pids
 
 # Start up
 CMD ["docker/startup.sh"]
