@@ -530,7 +530,7 @@ ActiveRecord::Schema.define(version: 2022_04_11_153354) do
     t.bigint "feed_id"
     t.bigint "user_id"
     t.string "uuid"
-    t.text "value"
+    t.json "value"
     t.string "version"
     t.string "topic"
     t.datetime "created_at", precision: 6, null: false
