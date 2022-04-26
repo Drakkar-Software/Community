@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/Drakkar-Software/spree_cloud.git
-  revision: de53035193c2ecca51dd6fc19a49ff35bd7b565d
+  revision: 107250e998f093925046ab25e23fef8cd23fe560
   branch: feature/add-terraform
   specs:
     spree_cloud (0.0.1.alpha)
