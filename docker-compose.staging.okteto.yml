@@ -40,7 +40,7 @@ services:
       - RAILS_ENV=production
       - RAILS_MAX_THREADS=5
       - SECRET_KEY_BASE=DZe1a5e6az1dq2s3c1q
-    image: registry.cloud.okteto.net/community-drakkarsoftware/community:1.0.1
+    image: registry.cloud.okteto.net/staging-community-drakkarsoftware/community:latest
     ports:
       - "3000"
 
