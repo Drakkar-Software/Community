@@ -45,21 +45,21 @@ services:
     ports:
       - "3000"
 
-  worker:
-    replicas: 2
-    environment:
-      - DATABASE_PASSWORD=$COMMUNITY_POSTGRES_PASSWORD
-      - DATABASE_USERNAME=$COMMUNITY_POSTGRES_USER
-      - DATABASE_HOST=db
-      - DATABASE_PORT=5432
-      - STORAGE_AWS_ACCESS_KEY_ID=$COMMUNITY_STORAGE_AWS_ACCESS_KEY_ID
-      - STORAGE_SECRET_ACCESS_KEY=$COMMUNITY_STORAGE_SECRET_ACCESS_KEY
-      - STORAGE_AWS_REGION=$COMMUNITY_STORAGE_AWS_REGION
-      - STORAGE_AWS_S3_BUCKET_NAME=$STORAGE_AWS_S3_BUCKET_NAME
-      - STORAGE_AWS_ENDPOINT=$COMMUNITY_STORAGE_AWS_ENDPOINT
-      - REDIS_URL=redis://redis:6379/1
-      - RAILS_ENV=production
-      - RAILS_MAX_THREADS=5
-      - SECRET_KEY_BASE=$COMMUNITY_SECRET_KEY_BASE
-    image: registry.cloud.okteto.net/staging-community-drakkarsoftware/community:latest
-    command: bundle exec sidekiq -C config/sidekiq.yml
+#  worker:
+#    replicas: 2
+#    environment:
+#      - DATABASE_PASSWORD=$COMMUNITY_POSTGRES_PASSWORD
+#      - DATABASE_USERNAME=$COMMUNITY_POSTGRES_USER
+#      - DATABASE_HOST=db
+#      - DATABASE_PORT=5432
+#      - STORAGE_AWS_ACCESS_KEY_ID=$COMMUNITY_STORAGE_AWS_ACCESS_KEY_ID
+#      - STORAGE_SECRET_ACCESS_KEY=$COMMUNITY_STORAGE_SECRET_ACCESS_KEY
+#      - STORAGE_AWS_REGION=$COMMUNITY_STORAGE_AWS_REGION
+#      - STORAGE_AWS_S3_BUCKET_NAME=$STORAGE_AWS_S3_BUCKET_NAME
+#      - STORAGE_AWS_ENDPOINT=$COMMUNITY_STORAGE_AWS_ENDPOINT
+#      - REDIS_URL=redis://redis:6379/1
+#      - RAILS_ENV=production
+#      - RAILS_MAX_THREADS=5
+#      - SECRET_KEY_BASE=$COMMUNITY_SECRET_KEY_BASE
+#    image: registry.cloud.okteto.net/staging-community-drakkarsoftware/community:latest
+#    command: bundle exec sidekiq -C config/sidekiq.yml
