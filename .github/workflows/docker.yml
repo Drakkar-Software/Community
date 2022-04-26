@@ -110,118 +110,95 @@ jobs:
           cache-to: type=local,dest=/tmp/.buildx-cache
 
       - name: Image digest
-        run: echo ${{ steps.docker_build_and_psuh.outputs.digest }}
+        run: echo ${{ steps.build_and_push.outputs.digest }}
 
-  deploy_staging:
-    if: github.event_name == 'push' && (startsWith(github.ref, 'refs/tags') || github.ref == 'refs/heads/master')
+  okteto_build:
+    name: ubuntu-latest - Okteto build
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: okteto/login@2.1.0
+        with:
+          token: ${{ secrets.OKTETO_TOKEN }}
+
+      - name: Build staging
+        uses: okteto/build@1.15.8
+        env:
+          GITHUB_TOKEN: ${{ secrets.AUTH_TOKEN }}
+        with:
+          file: Dockerfile.development
+          tag: registry.cloud.okteto.net/staging-community-drakkarsoftware/community:latest
+          buildargs: GITHUB_TOKEN
+
+      - name: Build production
+#        if: github.event_name == 'push' && (startsWith(github.ref, 'refs/tags') || github.ref == 'refs/heads/master')
+        uses: okteto/build@1.15.8
+        env:
+          GITHUB_TOKEN: ${{ secrets.AUTH_TOKEN }}
+        with:
+          file: Dockerfile.development
+          tag: registry.cloud.okteto.net/community-drakkarsoftware/community:latest
+          buildargs: GITHUB_TOKEN
+
+  okteto_deploy_staging:
+#    if: github.event_name == 'push' && (startsWith(github.ref, 'refs/tags') || github.ref == 'refs/heads/master')
     name: ubuntu-latest - Docker - Deploy - Staging
     runs-on: ubuntu-latest
     needs:
       - lint
-      - build_and_push
-    environment:
-      name: staging
+      - okteto_build
     steps:
       - uses: actions/checkout@v2
 
-      #      - name: Copy docker-compose.production.yml via SSH action TODO
-      #        uses: appleboy/scp-action@master
-      #        with:
-      #          HOST: ${{ secrets.HOST }}
-      #          USERNAME: ${{ secrets.USERNAME }}
-      #          PASSWORD: ${{ secrets.PASSWORD }}
-      #          PORT: ${{ secrets.PORT }}
-      #          source: "docker-compose.production.yml"
-      #          target: ${{ secrets.WORKING_DIR }}
-
-      - name: Deploy to staging via SSH action
-        uses: appleboy/ssh-action@v0.1.3
-        env:
-          GITHUB_REF: ${{ github.ref }}
-          GITHUB_HEAD_REF: ${{ github.head_ref }}
+      - uses: okteto/login@2.1.0
         with:
-          HOST: ${{ secrets.HOST }}
-          USERNAME: ${{ secrets.USERNAME }}
-          PASSWORD: ${{ secrets.PASSWORD }}
-          PORT: ${{ secrets.PORT }}
-          envs: GITHUB_REF,GITHUB_HEAD_REF
-          script: |
-            # Move to working directory
-            cd ${{ secrets.WORKING_DIR }}
+          token: ${{ secrets.OKTETO_TOKEN }}
 
-            echo $GITHUB_REF
-            echo $GITHUB_HEAD_REF
+      - uses: okteto/namespace@2.1.0
+        id: namespace
+        with:
+          token: ${{ secrets.OKTETO_TOKEN }}
+          namespace: staging-community-drakkarsoftware
 
-            # Update image version
-            sed -i -- 's/IMAGE_TAG=.*/IMAGE_TAG=latest/g' .env
+      - name: Deploy
+        uses: okteto/deploy-stack@2.1.0
+        with:
+          name: okteto-staging-community
+          namespace: staging-community-drakkarsoftware
+          file: docker-compose.staging.okteto.yml
+          build: false
 
-            # Stop the service
-            docker-compose stop
-
-            # Remove old containers
-            docker-compose rm -f
-
-            # Update images
-            docker-compose pull
-
-            # Restart the service
-            docker-compose -f docker-compose.yml up -d
-
-  deploy_production:
-    if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags')
+  okteto_deploy_production:
+#    if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags')
+#    if: github.event_name == 'push' && (startsWith(github.ref, 'refs/tags') || github.ref == 'refs/heads/master')
     name: ubuntu-latest - Docker - Deploy - Production
     runs-on: ubuntu-latest
     needs:
       - lint
-      - build_and_push
-      - deploy_staging
-    environment:
-      name: production
+      - okteto_build
+      - okteto_deploy_staging
     steps:
       - uses: actions/checkout@v2
 
-      #      - name: Copy docker-compose.production.yml via SSH action TODO
-      #        uses: appleboy/scp-action@master
-      #        with:
-      #          HOST: ${{ secrets.HOST }}
-      #          USERNAME: ${{ secrets.USERNAME }}
-      #          PASSWORD: ${{ secrets.PASSWORD }}
-      #          PORT: ${{ secrets.PORT }}
-      #          source: "docker-compose.production.yml"
-      #          target: ${{ secrets.WORKING_DIR }}
-
-      - name: Deploy to production via SSH action
-        uses: appleboy/ssh-action@v0.1.3
-        env:
-          GITHUB_REF: ${{ github.ref }}
-          GITHUB_HEAD_REF: ${{ github.head_ref }}
+      - uses: okteto/login@2.1.0
         with:
-          HOST: ${{ secrets.HOST }}
-          USERNAME: ${{ secrets.USERNAME }}
-          PASSWORD: ${{ secrets.PASSWORD }}
-          PORT: ${{ secrets.PORT }}
-          envs: GITHUB_REF,GITHUB_HEAD_REF
-          script: |
-            # Move to working directory
-            cd ${{ secrets.WORKING_DIR }}
+          token: ${{ secrets.OKTETO_TOKEN }}
 
-            echo $GITHUB_REF
-            echo $GITHUB_HEAD_REF
+      - uses: okteto/namespace@2.1.0
+        id: namespace
+        with:
+          token: ${{ secrets.OKTETO_TOKEN }}
+          namespace: community-drakkarsoftware
 
-            # Update image version
-            VERSION=${GITHUB_REF##*/}
-            echo $VERSION
-            
-            sed -i -- "s/IMAGE_TAG=.*/IMAGE_TAG=$VERSION/g" .env
-
-            # Stop the service
-            docker-compose stop
-
-            # Remove old containers
-            docker-compose rm -f
-
-            # Restart the service
-            docker-compose -f docker-compose.yml up -d
+      - name: Deploy
+        uses: okteto/deploy-stack@2.1.0
+        with:
+          name: okteto-community
+          namespace: community-drakkarsoftware
+          file: docker-compose.okteto.yml
+          build: false
 
   notify:
     name: Notify
@@ -229,8 +206,9 @@ jobs:
     needs:
       - lint
       - build_and_push
-      - deploy_staging
-      - deploy_production
+      - okteto_build
+      - okteto_deploy_staging
+      - okteto_deploy_production
     if: ${{ failure() }}
 
     steps:

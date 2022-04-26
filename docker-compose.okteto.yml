@@ -1,0 +1,65 @@
+services:
+  db:
+    replicas: 1
+    image: postgres:14-alpine
+    environment:
+      - POSTGRES_PASSWORD=$COMMUNITY_POSTGRES_PASSWORD
+      - POSTGRES_USER=$COMMUNITY_POSTGRES_USER
+      - POSTGRES_HOST=0.0.0.0
+    ports:
+      - "5432"
+    volumes:
+      - "/var/lib/postgresql/data"
+
+  redis:
+    replicas: 1
+    image: redis:6.2-alpine
+    ports:
+      - "6379"
+    volumes:
+      - "/var/lib/redis"
+      - "/usr/local/etc/redis/redis.conf"
+
+  web:
+    public: true
+    replicas: 1
+    environment:
+      - PRODUCTION_DATABASE=production
+      - DATABASE_PASSWORD=$COMMUNITY_POSTGRES_PASSWORD
+      - DATABASE_USERNAME=$COMMUNITY_POSTGRES_USER
+      - DATABASE_HOST=db
+      - DATABASE_PORT=5432
+      - STORAGE_AWS_ACCESS_KEY_ID=$COMMUNITY_STORAGE_AWS_ACCESS_KEY_ID
+      - STORAGE_SECRET_ACCESS_KEY=$COMMUNITY_STORAGE_SECRET_ACCESS_KEY
+      - STORAGE_AWS_REGION=$COMMUNITY_STORAGE_AWS_REGION
+      - STORAGE_AWS_S3_BUCKET_NAME=$STORAGE_AWS_S3_BUCKET_NAME
+      - STORAGE_AWS_ENDPOINT=$COMMUNITY_STORAGE_AWS_ENDPOINT
+      - ADMIN_PASSWORD=$COMMUNITY_ADMIN_PASSWORD
+      - ADMIN_EMAIL=$COMMUNITY_ADMIN_EMAIL
+      - REDIS_URL=redis://redis:6379/1
+      - RAILS_ENV=production
+      - RAILS_MAX_THREADS=5
+      - SECRET_KEY_BASE=$COMMUNITY_SECRET_KEY_BASE
+    image: registry.cloud.okteto.net/community-drakkarsoftware/community:latest
+    ports:
+      - "3000"
+
+  worker:
+    replicas: 2
+    environment:
+      - PRODUCTION_DATABASE=production
+      - DATABASE_PASSWORD=$COMMUNITY_POSTGRES_PASSWORD
+      - DATABASE_USERNAME=$COMMUNITY_POSTGRES_USER
+      - DATABASE_HOST=db
+      - DATABASE_PORT=5432
+      - STORAGE_AWS_ACCESS_KEY_ID=$COMMUNITY_STORAGE_AWS_ACCESS_KEY_ID
+      - STORAGE_SECRET_ACCESS_KEY=$COMMUNITY_STORAGE_SECRET_ACCESS_KEY
+      - STORAGE_AWS_REGION=$COMMUNITY_STORAGE_AWS_REGION
+      - STORAGE_AWS_S3_BUCKET_NAME=$STORAGE_AWS_S3_BUCKET_NAME
+      - STORAGE_AWS_ENDPOINT=$COMMUNITY_STORAGE_AWS_ENDPOINT
+      - REDIS_URL=redis://redis:6379/1
+      - RAILS_ENV=production
+      - RAILS_MAX_THREADS=5
+      - SECRET_KEY_BASE=$COMMUNITY_SECRET_KEY_BASE
+    image: registry.cloud.okteto.net/community-drakkarsoftware/community:latest
+    command: bundle exec sidekiq -C config/sidekiq.yml

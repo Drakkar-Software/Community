@@ -91,6 +91,7 @@ gem 'spree_i18n', '>= 5.0'
 gem 'spree_sitemap', github: 'spree-contrib/spree_sitemap'
 
 # Drakkar Software's engines
+# gem 'spree_donations', path: 'engines/spree_donations'
 gem 'spree_donations', github: 'Drakkar-Software/spree_donations', branch: 'master'
 gem 'spree_cloud', github: 'Drakkar-Software/spree_cloud', branch: 'feature/add-terraform'
 gem 'spree_feeds', github: 'Drakkar-Software/spree_feeds', branch: 'master'
