@@ -10,6 +10,7 @@ class CreateSpreeDeployments < ActiveRecord::Migration[6.1]
       t.string :url
       t.string :name
       t.integer :status
+      t.json :extra
 
       t.timestamps
     end
