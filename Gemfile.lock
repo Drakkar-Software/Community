@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/Drakkar-Software/spree_cloud.git
-  revision: 697b2304b1e7871e0a2efdc6cb813154078c4123
+  revision: c06725061821dfc1cd705c525daf1ce37359fbd3
   branch: master
   specs:
     spree_cloud (0.0.1.alpha)

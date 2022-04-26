@@ -321,6 +321,7 @@ ActiveRecord::Schema.define(version: 2022_04_11_153354) do
     t.string "url"
     t.string "name"
     t.integer "status"
+    t.json "extra"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["host_id"], name: "index_spree_deployments_on_host_id"
