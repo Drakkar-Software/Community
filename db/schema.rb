@@ -321,7 +321,7 @@ ActiveRecord::Schema.define(version: 2022_04_11_153354) do
     t.string "url"
     t.string "name"
     t.integer "status"
-    t.json "extra"
+    t.string "extra"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["host_id"], name: "index_spree_deployments_on_host_id"
@@ -531,7 +531,7 @@ ActiveRecord::Schema.define(version: 2022_04_11_153354) do
     t.bigint "feed_id"
     t.bigint "user_id"
     t.string "uuid"
-    t.json "value"
+    t.string "value"
     t.string "version"
     t.string "topic"
     t.datetime "created_at", precision: 6, null: false

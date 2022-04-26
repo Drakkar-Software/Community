@@ -6,7 +6,7 @@ class CreateSpreeMessages < ActiveRecord::Migration[6.1]
       t.belongs_to :user
 
       t.string :uuid
-      t.json :value
+      t.string :value
       t.string :version
       t.string :topic
 
