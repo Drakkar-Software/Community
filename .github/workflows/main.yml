@@ -24,6 +24,7 @@ jobs:
 
       - name: Install gems
         run: |
+          bundle config --local GITHUB__COM x-oauth-basic:${{ secrets.AUTH_TOKEN }}
           bundle config --local without production
           bundle config path vendor/bundle
           bundle install --jobs 4 --retry 3
@@ -91,6 +92,7 @@ jobs:
 
       - name: Install gems
         run: |
+          bundle config --local GITHUB__COM x-oauth-basic:${{ secrets.AUTH_TOKEN }}
           bundle config --local without production
           bundle config path vendor/bundle
           bundle install --jobs 4 --retry 3
