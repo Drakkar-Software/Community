@@ -7,6 +7,10 @@ services:
     volumes:
       - "/var/lib/redis"
       - "/usr/local/etc/redis/redis.conf"
+    resources:
+      cpu: 1
+      memory: 2Gi
+      storage: 1Gi
 
   web:
     public: true
@@ -31,9 +35,12 @@ services:
     image: registry.cloud.okteto.net/staging-community-drakkarsoftware/community:latest
     ports:
       - "3000"
+    resources:
+      cpu: 2
+      memory: 4Gi
 
   worker:
-    replicas: 2
+    replicas: 1
     environment:
       - PRODUCTION_DATABASE=$COMMUNITY_STAGING_PRODUCTION_DATABASE
       - DATABASE_PASSWORD=$COMMUNITY_STAGING_DATABASE_PASSWORD
@@ -51,3 +58,6 @@ services:
       - SECRET_KEY_BASE=$COMMUNITY_SECRET_KEY_BASE
     image: registry.cloud.okteto.net/staging-community-drakkarsoftware/community:latest
     command: bundle exec sidekiq -C config/sidekiq.yml
+    resources:
+      cpu: 1
+      memory: 2Gi
