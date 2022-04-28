@@ -12,7 +12,7 @@ GIT
 
 GIT
   remote: https://github.com/Drakkar-Software/spree_donations.git
-  revision: 04f7a71c7521f02d0dc2ed9c61406dd55b494718
+  revision: 61aab1bf8486d0b598bbc69196e0398cb36b4dff
   branch: master
   specs:
     spree_donations (0.0.1.alpha)
