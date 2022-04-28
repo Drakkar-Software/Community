@@ -1,6 +1,7 @@
 #! /bin/sh
 
 # Wait for PostgreSQL
+sleep 10
 until nc -z -v -w30 $DATABASE_HOST $DATABASE_PORT
 do
   echo 'Waiting for PostgreSQL...'
