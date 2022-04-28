@@ -19,10 +19,10 @@ development:
 test:
   <<: *default
   database: <%= ENV['TEST_DATABASE'] || "OctoBot-Community_spree4_test" %>
-  username: <%= ENV['DATABASE_USERNAME'] || "postgres" %>
-  password: <%= ENV['DATABASE_PASSWORD'] || "postgres" %>
-  host: <%= ENV['DATABASE_HOST'] || "localhost" %>
-  port: <%= ENV['DATABASE_PORT'] || "5432" %>
+  username: <%= ENV['TEST_DATABASE_USERNAME'] || "postgres" %>
+  password: <%= ENV['TEST_DATABASE_PASSWORD'] || "postgres" %>
+  host: <%= ENV['TEST_DATABASE_HOST'] || "localhost" %>
+  port: <%= ENV['TEST_DATABASE_PORT'] || "5432" %>
 
 production:
   <<: *default
