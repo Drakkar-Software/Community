@@ -24,6 +24,9 @@ COPY . /app/
 # Install gems
 RUN bundle install -j4 --retry 3
 
+# Build assets
+RUN yarn build
+
 RUN mkdir -p tmp/pids
 
 # Start up
