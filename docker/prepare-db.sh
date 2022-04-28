@@ -1,5 +1,5 @@
 #! /bin/sh
-bundle exec rake db:prepare && echo "prepare ok"
+bundle exec rake db:create && bundle exec rake db:prepare && echo "prepare ok"
 #if bundle exec rails db:exists ; then
 #  echo "Database already exists, migrating..."
 #  bundle exec rails db:migrate
