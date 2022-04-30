@@ -30,7 +30,7 @@ services:
       - ADMIN_PASSWORD=$COMMUNITY_ADMIN_PASSWORD
       - ADMIN_EMAIL=$COMMUNITY_ADMIN_EMAIL
       - REDIS_URL=redis://redis:6379/1
-      - RAILS_ENV=development
+      - RAILS_ENV=production
       - RAILS_MAX_THREADS=5
       - SECRET_KEY_BASE=$COMMUNITY_SECRET_KEY_BASE
     image: registry.cloud.okteto.net/staging-community-drakkarsoftware/community:latest
@@ -55,7 +55,7 @@ services:
       - STORAGE_AWS_S3_BUCKET_NAME=$STORAGE_AWS_S3_BUCKET_NAME
       - STORAGE_AWS_ENDPOINT=$COMMUNITY_STORAGE_AWS_ENDPOINT
       - REDIS_URL=redis://redis:6379/1
-      - RAILS_ENV=development
+      - RAILS_ENV=production
       - RAILS_MAX_THREADS=5
       - SECRET_KEY_BASE=$COMMUNITY_SECRET_KEY_BASE
     image: registry.cloud.okteto.net/staging-community-drakkarsoftware/community:latest
