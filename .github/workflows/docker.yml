@@ -124,6 +124,7 @@ jobs:
           token: ${{ secrets.OKTETO_TOKEN }}
 
       - name: Build staging
+        if: github.event_name == 'push' && (startsWith(github.ref, 'refs/tags') || github.ref == 'refs/heads/master')
         uses: okteto/build@1.15.8
         env:
           GITHUB_TOKEN: ${{ secrets.AUTH_TOKEN }}
@@ -133,7 +134,7 @@ jobs:
           buildargs: GITHUB_TOKEN
 
       - name: Build production
-        if: github.event_name == 'push' && (startsWith(github.ref, 'refs/tags') || github.ref == 'refs/heads/master')
+        if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags')
         uses: okteto/build@1.15.8
         env:
           GITHUB_TOKEN: ${{ secrets.AUTH_TOKEN }}
@@ -143,7 +144,7 @@ jobs:
           buildargs: GITHUB_TOKEN
 
   okteto_deploy_staging:
-#    if: github.event_name == 'push' && (startsWith(github.ref, 'refs/tags') || github.ref == 'refs/heads/master')
+    if: github.event_name == 'push' && (startsWith(github.ref, 'refs/tags') || github.ref == 'refs/heads/master')
     name: ubuntu-latest - Docker - Deploy - Staging
     runs-on: ubuntu-latest
     needs:
@@ -162,6 +163,12 @@ jobs:
           token: ${{ secrets.OKTETO_TOKEN }}
           namespace: staging-community-drakkarsoftware
 
+      - name: Destroy
+        uses: okteto/destroy-stack@2.1.0
+        with:
+          name: okteto-staging-community
+          namespace: staging-community-drakkarsoftware
+
       - name: Deploy
         uses: okteto/deploy-stack@2.1.0
         with:
@@ -171,8 +178,7 @@ jobs:
           build: false
 
   okteto_deploy_production:
-#    if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags')
-    if: github.event_name == 'push' && (startsWith(github.ref, 'refs/tags') || github.ref == 'refs/heads/master')
+    if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags')
     name: ubuntu-latest - Docker - Deploy - Production
     runs-on: ubuntu-latest
     needs:
@@ -190,6 +196,12 @@ jobs:
         id: namespace
         with:
           token: ${{ secrets.OKTETO_TOKEN }}
+          namespace: community-drakkarsoftware
+
+      - name: Destroy
+        uses: okteto/destroy-stack@2.1.0
+        with:
+          name: okteto-community
           namespace: community-drakkarsoftware
 
       - name: Deploy
