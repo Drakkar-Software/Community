@@ -58,7 +58,7 @@ services:
       - gateway
 
   cache:
-    image: memcached:1.6.12-alpine
+    image: memcached:1.6.15-alpine
 
 networks:
   gateway:
