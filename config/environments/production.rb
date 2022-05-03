@@ -64,8 +64,10 @@ Rails.application.configure do
   # Prepend all log lines with the following tags.
   config.log_tags = [ :request_id ]
 
-  # Use a different cache store in production.
-  # config.cache_store = :mem_cache_store
+  # Use a different cache store in production. servers should be specified using MEMCACHE_SERVERS
+  config.cache_store = :mem_cache_store, { pool_size: 10, pool_timeout: 5 }
+  # Enable fragment and page caching in ActionController
+  config.action_controller.perform_caching = true
 
   # Use a real queuing backend for Active Job (and separate queues per environment).
   # config.active_job.queue_adapter     = :resque
