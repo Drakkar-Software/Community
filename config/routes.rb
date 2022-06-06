@@ -26,6 +26,14 @@ Rails.application.routes.draw do
   # sidekiq web UI
   require 'sidekiq/web'
   mount Sidekiq::Web, at: '/admin/sidekiq'
+end
 
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+Spree::Core::Engine.add_routes do
+  namespace :api, defaults: { format: 'json' } do
+    namespace :v2 do
+      namespace :storefront do
+        post '/products', to: 'products#create', as: :products_create
+      end
+    end
+  end
 end
