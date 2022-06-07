@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_11_153354) do
+ActiveRecord::Schema.define(version: 2022_06_05_142038) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -843,6 +843,8 @@ ActiveRecord::Schema.define(version: 2022_04_11_153354) do
     t.bigint "profile_id"
     t.jsonb "public_metadata"
     t.jsonb "private_metadata"
+    t.bigint "author_id"
+    t.index ["author_id"], name: "index_spree_products_on_author_id"
     t.index ["available_on"], name: "index_spree_products_on_available_on"
     t.index ["deleted_at"], name: "index_spree_products_on_deleted_at"
     t.index ["discontinue_on"], name: "index_spree_products_on_discontinue_on"
@@ -1742,4 +1744,5 @@ ActiveRecord::Schema.define(version: 2022_04_11_153354) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "spree_oauth_access_grants", "spree_oauth_applications", column: "application_id"
   add_foreign_key "spree_oauth_access_tokens", "spree_oauth_applications", column: "application_id"
+  add_foreign_key "spree_products", "spree_users", column: "author_id"
 end
