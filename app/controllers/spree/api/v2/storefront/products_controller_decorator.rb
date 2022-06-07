@@ -9,9 +9,10 @@ module Spree
 
           def create
             resource = model_class.new(create_params)
+            resource.price = params[:price].present? ? params[:price] : 0
+            resource.author = spree_current_user
             resource.shipping_category = Spree::ShippingCategory.second # => digital, TODO improve it
             resource.taxons = [Spree::Taxon.find_by!(name: "Tentacle")] # TODO add a setting
-            # TODO save author
             # TODO upload digital assets
             # TODO upload image
             ensure_current_store(resource)
@@ -26,7 +27,7 @@ module Spree
           private
 
           def create_params
-            params.require(:product).permit(:name, :price, :description)
+            params.require(:product).permit(:name, :description)
           end
         end
       end
