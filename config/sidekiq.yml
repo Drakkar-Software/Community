@@ -13,3 +13,6 @@
   subscription_job:
     cron: '0 0 * * *'  # Runs once per day at 00:00
     class: Spree::SubscriptionJob
+  purge_storage_job:
+    cron: '0 5 * * *'  # Runs once per day at 05:00
+    class: PurgeStorageJob
