@@ -23,6 +23,7 @@ AllCops:
     - 'node_modules/**/*'
     - 'bin/**/*'
     - 'engines/**/*'
+    - 'app/models/spree/*_decorator.rb'
 
 Layout/MultilineOperationIndentation:
   EnforcedStyle: indented
