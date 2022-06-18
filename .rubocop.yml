@@ -5,6 +5,7 @@ inherit_from: '.rubocop-disabled.yml'
 AllCops:
   DisplayCopNames: true
   TargetRubyVersion: 2.5
+  NewCops: enable
   Exclude:
     - '**/sandbox/**/*'
     - '**/db/**/*'
@@ -21,6 +22,7 @@ AllCops:
     - 'lib/generators/**/*'
     - 'node_modules/**/*'
     - 'bin/**/*'
+    - 'engines/**/*'
 
 Layout/MultilineOperationIndentation:
   EnforcedStyle: indented
