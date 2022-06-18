@@ -13,6 +13,8 @@ module Spree
             resource.author = spree_current_user
             resource.shipping_category = Spree::ShippingCategory.second # => digital, TODO improve it
             resource.taxons = [Spree::Taxon.find_by!(name: 'Tentacle')] # TODO: add a setting
+            resource.force_digital
+            resource.set_unlimited_stock
             ensure_current_store(resource)
 
             # product images
