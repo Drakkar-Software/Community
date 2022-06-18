@@ -53,9 +53,7 @@ jobs:
       - name: Run linters
         run: |
           bundle exec rubocop --parallel
-#          stylelint TODO uncomment when adding JS
-#          prettier
-#          eslint
+
       - name: Run security checks
         run: |
           bundle exec brakeman -q -w2
@@ -66,12 +64,21 @@ jobs:
     runs-on: ubuntu-latest
     services:
       postgres:
-        image: postgres:11
+        image: postgres:14
         env:
-          POSTGRES_USER: myapp
-          POSTGRES_DB: myapp_test
-          POSTGRES_PASSWORD: ""
-        ports: [ "5432:5432" ]
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: "postgres"
+          POSTGRES_DB: test
+        ports:
+          - 5432:5432
+        # needed because the postgres container does not provide a healthcheck
+        # tmpfs makes DB faster by using RAM
+        options: >-
+          --mount type=tmpfs,destination=/var/lib/postgresql/data
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
 
     steps:
       - name: Checkout code
@@ -119,13 +126,12 @@ jobs:
           yarn install --frozen-lockfile
           sudo ln -s /usr/lib/x86_64-linux-gnu/libffi.so.7 /usr/lib/x86_64-linux-gnu/libffi.so.6 # fix libffi.so.6 missing on ubuntu 20.04
 
-#      - name: Setup test database
-#        env:
-#          RAILS_ENV: test
-#          PGHOST: localhost
-#          PGUSER: myapp
-#        run: |
-#          bundle exec rake test_app
+      - name: Setup database
+        env:
+          ADMIN_EMAIL: test
+          ADMIN_PASSWORD: test
+        run: |
+          bundle exec rails db:test:prepare
 
       - name: Run tests
         run: |

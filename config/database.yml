@@ -18,7 +18,7 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: <%= ENV['TEST_DATABASE'] || "OctoBot-Community_spree4_test" %>
+  database: <%= ENV['TEST_DATABASE'] || "test" %>
   username: <%= ENV['TEST_DATABASE_USERNAME'] || "postgres" %>
   password: <%= ENV['TEST_DATABASE_PASSWORD'] || "postgres" %>
   host: <%= ENV['TEST_DATABASE_HOST'] || "localhost" %>
