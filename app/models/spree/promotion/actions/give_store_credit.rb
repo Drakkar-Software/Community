@@ -4,7 +4,7 @@ module Spree
     module Actions
       class GiveStoreCredit < PromotionAction
         preference :amount, :decimal, default: 1000
-        preference :category_name, :string, default: "Promotion credits"
+        preference :category_name, :string, default: 'Promotion credits'
 
         def perform(payload = {})
           user = payload[:user]

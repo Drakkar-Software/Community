@@ -42,11 +42,11 @@ Rails.application.configure do
   # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for NGINX
 
   # Store uploaded files on the local file system (see config/storage.yml for options).
-  if ENV['STORAGE_AWS_ACCESS_KEY_ID'].present? && ENV['STORAGE_SECRET_ACCESS_KEY'].present?
-    config.active_storage.service = :amazon
-  else
-    config.active_storage.service = :local
-  end
+  config.active_storage.service = if ENV['STORAGE_AWS_ACCESS_KEY_ID'].present? && ENV['STORAGE_SECRET_ACCESS_KEY'].present?
+                                    :amazon
+                                  else
+                                    :local
+                                  end
 
   # Mount Action Cable outside main process or domain.
   # config.action_cable.mount_path = nil
@@ -62,7 +62,7 @@ Rails.application.configure do
   config.log_level = :debug
 
   # Prepend all log lines with the following tags.
-  config.log_tags = [ :request_id ]
+  config.log_tags = [:request_id]
 
   # Use a different cache store in production. servers should be specified using MEMCACHE_SERVERS
   config.cache_store = :mem_cache_store, { pool_size: 10, pool_timeout: 5 }
@@ -72,7 +72,7 @@ Rails.application.configure do
   # Use a real queuing backend for Active Job (and separate queues per environment).
   # config.active_job.queue_adapter     = :resque
   # config.active_job.queue_name_prefix = "OctoBot-Community_#{Rails.env}"
-  host = ENV['HOST_DOMAIN']
+  host = ENV.fetch('HOST_DOMAIN', nil)
 
   config.action_mailer.perform_caching = false
   config.action_mailer.raise_delivery_errors = true
@@ -82,8 +82,8 @@ Rails.application.configure do
     address: 'ssl0.ovh.net',
     port: '587',
     authentication: :plain,
-    user_name: ENV['EMAIL_USERNAME'] || 'do-not-reply@octobot.online',
-    password: ENV['EMAIL_PASSWORD'],
+    user_name: ENV.fetch('EMAIL_USERNAME', 'do-not-reply@octobot.online'),
+    password: ENV.fetch('EMAIL_PASSWORD', nil),
     domain: host || 'community.octobot.online',
     enable_starttls_auto: true
   }
@@ -112,8 +112,8 @@ Rails.application.configure do
   # require "syslog/logger"
   # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new 'app-name')
 
-  if ENV["RAILS_LOG_TO_STDOUT"].present?
-    logger           = ActiveSupport::Logger.new(STDOUT)
+  if ENV['RAILS_LOG_TO_STDOUT'].present?
+    logger           = ActiveSupport::Logger.new($stdout)
     logger.formatter = config.log_formatter
     config.logger    = ActiveSupport::TaggedLogging.new(logger)
   end

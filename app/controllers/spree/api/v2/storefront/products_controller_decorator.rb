@@ -9,10 +9,10 @@ module Spree
 
           def create
             resource = model_class.new(create_params)
-            resource.price = params[:price].present? ? params[:price] : 0
+            resource.price = params[:price].presence || 0
             resource.author = spree_current_user
             resource.shipping_category = Spree::ShippingCategory.second # => digital, TODO improve it
-            resource.taxons = [Spree::Taxon.find_by!(name: "Tentacle")] # TODO add a setting
+            resource.taxons = [Spree::Taxon.find_by!(name: 'Tentacle')] # TODO: add a setting
             ensure_current_store(resource)
 
             # product images
@@ -54,7 +54,8 @@ module Spree
                 image.attachment.attach(
                   io: StringIO.new(Base64.decode64(base64_data[start.length..-1])),
                   filename: "#{SecureRandom.hex}.#{image_type}",
-                  content_type: "image/#{image_type}")
+                  content_type: "image/#{image_type}"
+                )
                 image
               elsif zip_regex_result
                 start = img_regex_result.to_s
@@ -62,13 +63,10 @@ module Spree
                 digital.attachment.attach(
                   io: StringIO.new(Base64.decode64(base64_data[start.length..-1])),
                   filename: "#{SecureRandom.hex}.zip",
-                  content_type: "application/zip")
+                  content_type: 'application/zip'
+                )
                 digital
-              else
-                nil
               end
-            else
-              nil
             end
           end
         end
