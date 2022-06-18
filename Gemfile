@@ -33,7 +33,7 @@ gem 'bundler', '~>2.2.33'
 # View overrides
 gem 'deface'
 
-group :development, :test do
+group :development do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 
@@ -57,6 +57,9 @@ group :development, :test do
   gem 'flamegraph'
   gem 'stackprof'
   gem 'memory_profiler'
+
+  # spree
+  gem 'spree_dev_tools'
 end
 
 group :test do

@@ -13,12 +13,17 @@ describe Spree::Promotion::Actions::GiveStoreCredit, type: :model do
       promotion.promotion_actions << action
     end
 
+    it 'does nothing by default' do
+      expect(user.total_available_store_credit).to eq(0)
+    end
+
     it 'increases user credits' do
+      action.perform(payload)
       expect(user.total_available_store_credit).to eq(1000)
     end
 
-    it 'returns true' do
-      expect(action.perform(payload)).to be true
+    it 'returns StoreCredit' do
+      expect(action.perform(payload)).to be_a(Spree::StoreCredit)
     end
   end
 end
