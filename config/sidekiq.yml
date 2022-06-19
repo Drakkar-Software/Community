@@ -7,9 +7,9 @@
   - spree_webhooks
 
 :schedule:
-  hosting_refresh_deployments_job:
-    cron: '0 * * * * *'   # Runs once per minute
-    class: Spree::Hosting::HostingRefreshDeploymentsJob
+#  hosting_refresh_deployments_job:
+#    cron: '0 * * * * *'   # Runs once per minute
+#    class: Spree::Hosting::HostingRefreshDeploymentsJob
   subscription_job:
     cron: '0 0 * * *'  # Runs once per day at 00:00
     class: Spree::SubscriptionJob
