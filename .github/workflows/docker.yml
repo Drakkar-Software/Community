@@ -30,7 +30,8 @@ jobs:
           IMG=community
           echo "VERSION=${GITHUB_REF##*/}" >> $GITHUB_ENV
           echo "IMAGE=${OWNER}/${IMG}" >> $GITHUB_ENV
-          echo "LATEST=latest-${SUFFIX}" >> $GITHUB_ENV
+          echo "LATEST=latest" >> $GITHUB_ENV
+          echo "WORKER=worker" >> $GITHUB_ENV
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
@@ -64,8 +65,8 @@ jobs:
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
 
-      - name: Build and push latest
-        if: github.event_name == 'push' && !startsWith(github.ref, 'refs/tags') && github.ref == 'refs/heads/master'
+      - name: Build and push app latest
+#        if: github.event_name == 'push' && !startsWith(github.ref, 'refs/tags') && github.ref == 'refs/heads/master'
         uses: docker/build-push-action@v2
         with:
           context: .
@@ -76,6 +77,21 @@ jobs:
           tags: ${{ env.IMAGE }}:${{ env.LATEST }}
           build-args: |
             GITHUB_TOKEN=${{ secrets.AUTH_TOKEN }}
+          cache-from: type=local,src=/tmp/.buildx-cache
+          cache-to: type=local,dest=/tmp/.buildx-cache
+
+      - name: Build and push worker latest
+        #        if: github.event_name == 'push' && !startsWith(github.ref, 'refs/tags') && github.ref == 'refs/heads/master'
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          builder: ${{ steps.buildx.outputs.name }}
+          file: Dockerfile.worker
+          platforms: linux/amd64
+          push: true
+          tags: ${{ env.IMAGE }}-${{ env.WORKER }}:${{ env.LATEST }}
+          build-args: |
+            BASE_IMAGE=${{ env.IMAGE }}:${{ env.LATEST }}
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
 
@@ -101,6 +117,7 @@ jobs:
           echo "VERSION=${GITHUB_REF##*/}" >> $GITHUB_ENV
           echo "IMAGE=${OWNER}/${IMG}" >> $GITHUB_ENV
           echo "LATEST=latest-${SUFFIX}" >> $GITHUB_ENV
+          echo "WORKER=worker" >> $GITHUB_ENV
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
@@ -134,7 +151,7 @@ jobs:
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
 
-      - name: Build and push on tag
+      - name: Build and push app on tag
         uses: docker/build-push-action@v2
         with:
           context: .
@@ -147,6 +164,22 @@ jobs:
             ${{ env.IMAGE }}:${{ env.VERSION }}
           build-args: |
             GITHUB_TOKEN=${{ secrets.AUTH_TOKEN }}
+          cache-from: type=local,src=/tmp/.buildx-cache
+          cache-to: type=local,dest=/tmp/.buildx-cache
+
+      - name: Build and push worker on tag
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          builder: ${{ steps.buildx.outputs.name }}
+          file: Dockerfile.worker
+          platforms: linux/amd64
+          push: true
+          tags: |
+            ${{ env.IMAGE }}-${{ env.WORKER }}:${{ env.LATEST }}
+            ${{ env.IMAGE }}-${{ env.WORKER }}:${{ env.VERSION }}
+          build-args: |
+            BASE_IMAGE=${{ env.IMAGE }}:${{ env.LATEST }}
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
 
