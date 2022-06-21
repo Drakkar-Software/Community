@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_13_942046) do
+ActiveRecord::Schema.define(version: 2022_06_21_200613) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -783,6 +783,7 @@ ActiveRecord::Schema.define(version: 2022_06_13_942046) do
     t.datetime "deleted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text "preferences"
     t.index ["deleted_at"], name: "index_spree_promotion_actions_on_deleted_at"
     t.index ["id", "type"], name: "index_spree_promotion_actions_on_id_and_type"
     t.index ["promotion_id"], name: "index_spree_promotion_actions_on_promotion_id"
