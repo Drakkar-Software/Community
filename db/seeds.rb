@@ -56,3 +56,5 @@ end
 # Drakkar-Software's engine seeds
 Spree::Cloud::Engine.load_seed if defined?(Spree::Cloud)
 Spree::Donations::Engine.load_seed if defined?(Spree::Donations)
+Spree::Feeds::Engine.load_seed if defined?(Spree::Feeds)
+Spree::Subscriptions::Engine.load_seed if defined?(Spree::Subscriptions)

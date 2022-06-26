@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_21_200613) do
+ActiveRecord::Schema.define(version: 2022_06_21_220356) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -548,6 +548,15 @@ ActiveRecord::Schema.define(version: 2022_06_21_200613) do
     t.index ["promotion_id"], name: "index_spree_order_promotions_on_promotion_id"
   end
 
+  create_table "spree_order_subscriptions", force: :cascade do |t|
+    t.bigint "subscription_id"
+    t.bigint "order_id"
+    t.date "failed_at"
+    t.text "failure_reasons"
+    t.index ["order_id"], name: "index_spree_order_subscriptions_on_order_id"
+    t.index ["subscription_id"], name: "index_spree_order_subscriptions_on_subscription_id"
+  end
+
   create_table "spree_orders", force: :cascade do |t|
     t.string "number", limit: 32
     t.decimal "item_total", precision: 10, scale: 2, default: "0.0", null: false
@@ -734,6 +743,8 @@ ActiveRecord::Schema.define(version: 2022_06_21_200613) do
     t.jsonb "public_metadata"
     t.jsonb "private_metadata"
     t.bigint "author_id"
+    t.bigint "subscription_frequency_id"
+    t.boolean "subscribable", default: false
     t.index ["author_id"], name: "index_spree_products_on_author_id"
     t.index ["available_on"], name: "index_spree_products_on_available_on"
     t.index ["deleted_at"], name: "index_spree_products_on_deleted_at"
@@ -741,6 +752,8 @@ ActiveRecord::Schema.define(version: 2022_06_21_200613) do
     t.index ["name"], name: "index_spree_products_on_name"
     t.index ["shipping_category_id"], name: "index_spree_products_on_shipping_category_id"
     t.index ["slug"], name: "index_spree_products_on_slug", unique: true
+    t.index ["subscribable"], name: "index_spree_products_on_subscribable"
+    t.index ["subscription_frequency_id"], name: "index_spree_products_on_subscription_frequency_id"
     t.index ["tax_category_id"], name: "index_spree_products_on_tax_category_id"
   end
 
@@ -1287,6 +1300,42 @@ ActiveRecord::Schema.define(version: 2022_06_21_200613) do
     t.index ["default"], name: "index_spree_stores_on_default"
     t.index ["deleted_at"], name: "index_spree_stores_on_deleted_at"
     t.index ["url"], name: "index_spree_stores_on_url"
+  end
+
+  create_table "spree_subscription_frequencies", force: :cascade do |t|
+    t.string "title"
+    t.integer "days_count", default: 0
+    t.integer "months_count", default: 0
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "spree_subscriptions", force: :cascade do |t|
+    t.bigint "variant_id"
+    t.bigint "parent_order_id"
+    t.bigint "subscription_frequency_id"
+    t.bigint "ship_address_id"
+    t.bigint "bill_address_id"
+    t.bigint "user_id"
+    t.text "cancellation_reasons"
+    t.date "last_recurrence_at"
+    t.date "cancelled_at"
+    t.date "next_occurrence_at"
+    t.boolean "enabled", default: true, null: false
+    t.boolean "paused", default: false, null: false
+    t.boolean "next_occurrence_possible", default: true
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["bill_address_id"], name: "index_spree_subscriptions_on_bill_address_id"
+    t.index ["cancelled_at"], name: "index_spree_subscriptions_on_cancelled_at"
+    t.index ["enabled"], name: "index_spree_subscriptions_on_enabled"
+    t.index ["last_recurrence_at"], name: "index_spree_subscriptions_on_last_recurrence_at"
+    t.index ["parent_order_id"], name: "index_spree_subscriptions_on_parent_order_id"
+    t.index ["paused"], name: "index_spree_subscriptions_on_paused"
+    t.index ["ship_address_id"], name: "index_spree_subscriptions_on_ship_address_id"
+    t.index ["subscription_frequency_id"], name: "index_spree_subscriptions_on_subscription_frequency_id"
+    t.index ["user_id"], name: "index_spree_subscriptions_on_user_id"
+    t.index ["variant_id"], name: "index_spree_subscriptions_on_variant_id"
   end
 
   create_table "spree_tax_categories", force: :cascade do |t|
