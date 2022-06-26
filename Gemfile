@@ -97,6 +97,7 @@ gem 'spree_sitemap', github: 'spree-contrib/spree_sitemap'
 gem 'spree_donations', github: 'Drakkar-Software/spree_donations', branch: 'master'
 gem 'spree_cloud', github: 'Drakkar-Software/spree_cloud', branch: 'master'
 gem 'spree_feeds', github: 'Drakkar-Software/spree_feeds', branch: 'master'
+gem 'spree_subscriptions', github: 'Drakkar-Software/spree_subscriptions', branch: 'master'
 
 # jobs
 gem 'sidekiq'

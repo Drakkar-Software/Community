@@ -38,6 +38,17 @@ GIT
       spree_backend (= 4.4.0, < 5.0)
 
 GIT
+  remote: https://github.com/Drakkar-Software/spree_subscriptions.git
+  revision: 5e8a5f1f155b7978589fddde82b316921a191bfd
+  branch: master
+  specs:
+    spree_subscriptions (0.0.1.alpha)
+      sidekiq
+      spree (= 4.4.0, < 5.0)
+      spree_auth_devise (= 4.4.2)
+      spree_backend (= 4.4.0, < 5.0)
+
+GIT
   remote: https://github.com/spree-contrib/spree_sitemap.git
   revision: 20a0afb3ff6255fcdd7ea8fa7e8a5ee6f9fc6398
   specs:
@@ -155,22 +166,22 @@ GEM
       activerecord (>= 4.0.0, < 7.1)
     awesome_print (1.9.2)
     aws-eventstream (1.2.0)
-    aws-partitions (1.586.0)
-    aws-sdk-core (3.130.2)
+    aws-partitions (1.598.0)
+    aws-sdk-core (3.131.1)
       aws-eventstream (~> 1, >= 1.0.2)
       aws-partitions (~> 1, >= 1.525.0)
       aws-sigv4 (~> 1.1)
-      jmespath (~> 1.0)
+      jmespath (~> 1, >= 1.6.1)
     aws-sdk-elasticbeanstalk (1.51.0)
       aws-sdk-core (~> 3, >= 3.127.0)
       aws-sigv4 (~> 1.1)
-    aws-sdk-kms (1.56.0)
+    aws-sdk-kms (1.57.0)
       aws-sdk-core (~> 3, >= 3.127.0)
       aws-sigv4 (~> 1.1)
-    aws-sdk-lambda (1.83.0)
+    aws-sdk-lambda (1.84.0)
       aws-sdk-core (~> 3, >= 3.127.0)
       aws-sigv4 (~> 1.1)
-    aws-sdk-route53 (1.62.0)
+    aws-sdk-route53 (1.63.0)
       aws-sdk-core (~> 3, >= 3.127.0)
       aws-sigv4 (~> 1.1)
     aws-sdk-s3 (1.114.0)
@@ -307,7 +318,7 @@ GEM
       http-form_data (~> 2.2)
       http-parser (~> 1.2.0)
     http-accept (1.7.0)
-    http-cookie (1.0.4)
+    http-cookie (1.0.5)
       domain_name (~> 0.5)
     http-form_data (2.3.0)
     http-parser (1.2.3)
@@ -534,7 +545,7 @@ GEM
     rubocop-rspec (2.10.0)
       rubocop (~> 1.19)
     ruby-progressbar (1.11.0)
-    ruby-terraform (1.4.0)
+    ruby-terraform (1.5.0)
       immutable-struct (~> 2.4)
       lino (~> 3.0)
     ruby-vips (2.1.4)
@@ -724,7 +735,7 @@ GEM
       concurrent-ruby (~> 1.0)
     unf (0.1.4)
       unf_ext
-    unf_ext (0.0.8.1)
+    unf_ext (0.0.8.2)
     unicode-display_width (2.1.0)
     uniform_notifier (1.16.0)
     validates_zipcode (0.5.0)
@@ -802,6 +813,7 @@ DEPENDENCIES
   spree_gateway
   spree_i18n (>= 5.0)
   spree_sitemap!
+  spree_subscriptions!
   stackprof
   tzinfo-data
   web-console (>= 3.3.0)
