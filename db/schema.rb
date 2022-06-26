@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_21_220356) do
+ActiveRecord::Schema.define(version: 2022_06_26_211355) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -309,14 +309,14 @@ ActiveRecord::Schema.define(version: 2022_06_21_220356) do
     t.index ["user_id"], name: "index_spree_donations_users_on_user_id"
   end
 
-  create_table "spree_feed_users", force: :cascade do |t|
+  create_table "spree_feed_subscription_actions", force: :cascade do |t|
     t.bigint "feed_id"
-    t.bigint "user_id"
+    t.bigint "subscription_action_id"
     t.boolean "is_publisher", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["feed_id"], name: "index_spree_feed_users_on_feed_id"
-    t.index ["user_id"], name: "index_spree_feed_users_on_user_id"
+    t.index ["feed_id"], name: "index_spree_feed_subscription_actions_on_feed_id"
+    t.index ["subscription_action_id"], name: "index_spree_feed_subscription_actions_on_subscription_action_id"
   end
 
   create_table "spree_feeds", force: :cascade do |t|
@@ -1302,6 +1302,20 @@ ActiveRecord::Schema.define(version: 2022_06_21_220356) do
     t.index ["url"], name: "index_spree_stores_on_url"
   end
 
+  create_table "spree_subscription_actions", force: :cascade do |t|
+    t.bigint "subscription_id"
+    t.string "uuid"
+    t.string "type"
+    t.integer "status"
+    t.json "inputs"
+    t.json "state"
+    t.json "outputs"
+    t.datetime "deleted_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["subscription_id"], name: "index_spree_subscription_actions_on_subscription_id"
+  end
+
   create_table "spree_subscription_frequencies", force: :cascade do |t|
     t.string "title"
     t.integer "days_count", default: 0
@@ -1316,7 +1330,6 @@ ActiveRecord::Schema.define(version: 2022_06_21_220356) do
     t.bigint "subscription_frequency_id"
     t.bigint "ship_address_id"
     t.bigint "bill_address_id"
-    t.bigint "user_id"
     t.text "cancellation_reasons"
     t.date "last_recurrence_at"
     t.date "cancelled_at"
@@ -1334,7 +1347,6 @@ ActiveRecord::Schema.define(version: 2022_06_21_220356) do
     t.index ["paused"], name: "index_spree_subscriptions_on_paused"
     t.index ["ship_address_id"], name: "index_spree_subscriptions_on_ship_address_id"
     t.index ["subscription_frequency_id"], name: "index_spree_subscriptions_on_subscription_frequency_id"
-    t.index ["user_id"], name: "index_spree_subscriptions_on_user_id"
     t.index ["variant_id"], name: "index_spree_subscriptions_on_variant_id"
   end
 

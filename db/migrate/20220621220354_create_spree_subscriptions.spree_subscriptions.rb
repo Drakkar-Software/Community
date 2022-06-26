@@ -7,7 +7,6 @@ class CreateSpreeSubscriptions < ActiveRecord::Migration[6.1]
       t.references :subscription_frequency, index: true
       t.references :ship_address, index: true
       t.references :bill_address, index: true
-      t.references :user, index: true
 
       t.text :cancellation_reasons
 
