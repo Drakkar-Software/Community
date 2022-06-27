@@ -1337,6 +1337,7 @@ ActiveRecord::Schema.define(version: 2022_06_26_211355) do
     t.boolean "enabled", default: true, null: false
     t.boolean "paused", default: false, null: false
     t.boolean "next_occurrence_possible", default: true
+    t.datetime "deleted_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["bill_address_id"], name: "index_spree_subscriptions_on_bill_address_id"

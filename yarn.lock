@@ -4,22 +4,22 @@
 
 "@hotwired/stimulus@^3.0.1":
   version "3.0.1"
-  resolved "https://registry.yarnpkg.com/@hotwired/stimulus/-/stimulus-3.0.1.tgz#141f15645acaa3b133b7c247cad58ae252ffae85"
+  resolved "https://registry.npmjs.org/@hotwired/stimulus/-/stimulus-3.0.1.tgz"
   integrity sha512-oHsJhgY2cip+K2ED7vKUNd2P+BEswVhrCYcJ802DSsblJFv7mPFVk3cQKvm2vHgHeDVdnj7oOKrBbzp1u8D+KA==
 
 "@hotwired/turbo@^7.0.1":
   version "7.1.0"
-  resolved "https://registry.yarnpkg.com/@hotwired/turbo/-/turbo-7.1.0.tgz#27e44e0e3dc5bd1d4bda0766d579cf5a14091cd7"
+  resolved "https://registry.npmjs.org/@hotwired/turbo/-/turbo-7.1.0.tgz"
   integrity sha512-Q8kGjqwPqER+CtpQudbH+3Zgs2X4zb6pBAlr6NsKTXadg45pAOvxI9i4QpuHbwSzR2+x87HUm+rot9F/Pe8rxA==
 
 "@rails/request.js@^0.0.5":
   version "0.0.5"
-  resolved "https://registry.yarnpkg.com/@rails/request.js/-/request.js-0.0.5.tgz#5ea896085f1c82bacca0e32aa918c8cd003a3d30"
+  resolved "https://registry.npmjs.org/@rails/request.js/-/request.js-0.0.5.tgz"
   integrity sha512-EDw3d5oCSPFn/os7C41+61urT5J5n+bMXK2NTQVhJI8VCPAIVbvFGjZIQI0a9zJ9KuaWKHM6IjXTRakKemlzoA==
 
 "@spree/dashboard@^0.1.0":
   version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@spree/dashboard/-/dashboard-0.1.0.tgz#5c8b14d2a9a67a30112bc5ec1990127ebd39a8af"
+  resolved "https://registry.npmjs.org/@spree/dashboard/-/dashboard-0.1.0.tgz"
   integrity sha512-cet27rLWyB792yRPcWjfLNbwOZzoQ8LvOU+ovCl/J/0Avz2x4G9f4/fJLdB0MwxuCItB8fqc61xeR5cai4Zgxg==
   dependencies:
     "@hotwired/stimulus" "^3.0.1"
@@ -34,7 +34,7 @@
 
 bootstrap@4.6.1:
   version "4.6.1"
-  resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-4.6.1.tgz#bc25380c2c14192374e8dec07cf01b2742d222a2"
+  resolved "https://registry.npmjs.org/bootstrap/-/bootstrap-4.6.1.tgz"
   integrity sha512-0dj+VgI9Ecom+rvvpNZ4MUZJz8dcX7WCX+eTID9+/8HgOkv3dsRzi8BGeZJCQU6flWQVYxwTQnEZFrmJSEO7og==
 
 esbuild-android-64@0.14.25:
@@ -49,7 +49,7 @@ esbuild-android-arm64@0.14.25:
 
 esbuild-darwin-64@0.14.25:
   version "0.14.25"
-  resolved "https://registry.yarnpkg.com/esbuild-darwin-64/-/esbuild-darwin-64-0.14.25.tgz#05dcdb6d884f427039ffee5e92ff97527e56c26d"
+  resolved "https://registry.npmjs.org/esbuild-darwin-64/-/esbuild-darwin-64-0.14.25.tgz"
   integrity sha512-TGp8tuudIxOyWd1+8aYPxQmC1ZQyvij/AfNBa35RubixD0zJ1vkKHVAzo0Zao1zcG6pNqiSyzfPto8vmg0s7oA==
 
 esbuild-darwin-arm64@0.14.25:
@@ -139,7 +139,7 @@ esbuild-windows-arm64@0.14.25:
 
 esbuild@^0.14.1:
   version "0.14.25"
-  resolved "https://registry.yarnpkg.com/esbuild/-/esbuild-0.14.25.tgz#ddb9d47b91ca76abb7d850ce3dfed0bc3dc88d16"
+  resolved "https://registry.npmjs.org/esbuild/-/esbuild-0.14.25.tgz"
   integrity sha512-4JHEIOMNFvK09ziiL+iVmldIhLbn49V4NAVo888tcGFKedEZY/Y8YapfStJ6zSE23tzYPKxqKwQBnQoIO0BI/Q==
   optionalDependencies:
     esbuild-android-64 "0.14.25"
@@ -165,25 +165,25 @@ esbuild@^0.14.1:
 
 flatpickr@^4.6.9:
   version "4.6.10"
-  resolved "https://registry.yarnpkg.com/flatpickr/-/flatpickr-4.6.10.tgz#6f581fdf8ebba83766457c7ddae36cc4ec983811"
+  resolved "https://registry.npmjs.org/flatpickr/-/flatpickr-4.6.10.tgz"
   integrity sha512-Z1rNbMAg7WmKPBVj0cOjO/4Ab5H3Of5MMohgVvJpFiEAcWFUcaGgN5yzizKGUUN1j6zXYeYASI2XxqrhbiRoig==
 
 jquery@3.5.1:
   version "3.5.1"
-  resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.5.1.tgz#d7b4d08e1bfdb86ad2f1a3d039ea17304717abb5"
+  resolved "https://registry.npmjs.org/jquery/-/jquery-3.5.1.tgz"
   integrity sha512-XwIBPqcMn57FxfT+Go5pzySnm4KWkT1Tv7gjrpT1srtf8Weynl6R273VJ5GjkRb51IzMp5nbaPjJXMWeju2MKg==
 
 popper.js@1.16.1:
   version "1.16.1"
-  resolved "https://registry.yarnpkg.com/popper.js/-/popper.js-1.16.1.tgz#2a223cb3dc7b6213d740e40372be40de43e65b1b"
+  resolved "https://registry.npmjs.org/popper.js/-/popper.js-1.16.1.tgz"
   integrity sha512-Wb4p1J4zyFTbM+u6WuO4XstYx4Ky9Cewe4DWrel7B0w6VVICvPwdOpotjzcf6eD8TsckVnIMNONQyPIUFOUbCQ==
 
 sortablejs@^1.14.0:
   version "1.14.0"
-  resolved "https://registry.yarnpkg.com/sortablejs/-/sortablejs-1.14.0.tgz#6d2e17ccbdb25f464734df621d4f35d4ab35b3d8"
+  resolved "https://registry.npmjs.org/sortablejs/-/sortablejs-1.14.0.tgz"
   integrity sha512-pBXvQCs5/33fdN1/39pPL0NZF20LeRbLQ5jtnheIPN9JQAaufGjKdWduZn4U7wCtVuzKhmRkI0DFYHYRbB2H1w==
 
 stimulus-sortable@^3.1.0:
   version "3.2.0"
-  resolved "https://registry.yarnpkg.com/stimulus-sortable/-/stimulus-sortable-3.2.0.tgz#16927f72b22d8e103a0102b2ed52a502d708fff7"
+  resolved "https://registry.npmjs.org/stimulus-sortable/-/stimulus-sortable-3.2.0.tgz"
   integrity sha512-hA1/jggRIOy7UK+BsKRNzfFNguWKo8yD64Oi6Y/n9qELm+G5sE4buuMK8ebAIU01kL5w8jGalPnpKAQkX/q9ZA==

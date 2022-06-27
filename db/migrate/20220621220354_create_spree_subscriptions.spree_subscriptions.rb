@@ -2,7 +2,6 @@
 class CreateSpreeSubscriptions < ActiveRecord::Migration[6.1]
   def change
     create_table :spree_subscriptions do |t|
-      t.references :variant, index: true
       t.references :parent_order, index: true
       t.references :subscription_frequency, index: true
       t.references :ship_address, index: true
@@ -17,6 +16,8 @@ class CreateSpreeSubscriptions < ActiveRecord::Migration[6.1]
       t.boolean :enabled, default: true, null: false, index: true
       t.boolean :paused, default: false, null: false, index: true
       t.boolean :next_occurrence_possible, default: true
+
+      t.datetime :deleted_at
 
       t.timestamps null: false
     end

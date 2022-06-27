@@ -24,7 +24,7 @@ GIT
 
 GIT
   remote: https://github.com/Drakkar-Software/spree_feeds.git
-  revision: 4dd54e6860a652a8a235d8523af3fe2be8ae4e27
+  revision: c17df0c7378df266e982230d84ca85bf0145af55
   branch: master
   specs:
     spree_feeds (0.0.1.alpha)
@@ -39,7 +39,7 @@ GIT
 
 GIT
   remote: https://github.com/Drakkar-Software/spree_subscriptions.git
-  revision: 5e8a5f1f155b7978589fddde82b316921a191bfd
+  revision: 89d49884fd844826531bd6eacb295ca0b0fdca35
   branch: master
   specs:
     spree_subscriptions (0.0.1.alpha)
@@ -166,8 +166,8 @@ GEM
       activerecord (>= 4.0.0, < 7.1)
     awesome_print (1.9.2)
     aws-eventstream (1.2.0)
-    aws-partitions (1.598.0)
-    aws-sdk-core (3.131.1)
+    aws-partitions (1.601.0)
+    aws-sdk-core (3.131.2)
       aws-eventstream (~> 1, >= 1.0.2)
       aws-partitions (~> 1, >= 1.525.0)
       aws-sigv4 (~> 1.1)
