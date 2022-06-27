@@ -54,7 +54,7 @@ if Spree::Promotion.find_by(name: signup_promotion_name).nil?
 end
 
 # Drakkar-Software's engine seeds
+Spree::Subscriptions::Engine.load_seed if defined?(Spree::Subscriptions)
 Spree::Cloud::Engine.load_seed if defined?(Spree::Cloud)
 Spree::Donations::Engine.load_seed if defined?(Spree::Donations)
 Spree::Feeds::Engine.load_seed if defined?(Spree::Feeds)
-Spree::Subscriptions::Engine.load_seed if defined?(Spree::Subscriptions)

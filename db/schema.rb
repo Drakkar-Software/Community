@@ -1310,7 +1310,6 @@ ActiveRecord::Schema.define(version: 2022_06_26_211355) do
     t.json "inputs"
     t.json "state"
     t.json "outputs"
-    t.datetime "deleted_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["subscription_id"], name: "index_spree_subscription_actions_on_subscription_id"
@@ -1325,7 +1324,6 @@ ActiveRecord::Schema.define(version: 2022_06_26_211355) do
   end
 
   create_table "spree_subscriptions", force: :cascade do |t|
-    t.bigint "variant_id"
     t.bigint "parent_order_id"
     t.bigint "subscription_frequency_id"
     t.bigint "ship_address_id"
@@ -1337,7 +1335,6 @@ ActiveRecord::Schema.define(version: 2022_06_26_211355) do
     t.boolean "enabled", default: true, null: false
     t.boolean "paused", default: false, null: false
     t.boolean "next_occurrence_possible", default: true
-    t.datetime "deleted_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["bill_address_id"], name: "index_spree_subscriptions_on_bill_address_id"
@@ -1348,7 +1345,6 @@ ActiveRecord::Schema.define(version: 2022_06_26_211355) do
     t.index ["paused"], name: "index_spree_subscriptions_on_paused"
     t.index ["ship_address_id"], name: "index_spree_subscriptions_on_ship_address_id"
     t.index ["subscription_frequency_id"], name: "index_spree_subscriptions_on_subscription_frequency_id"
-    t.index ["variant_id"], name: "index_spree_subscriptions_on_variant_id"
   end
 
   create_table "spree_tax_categories", force: :cascade do |t|

@@ -17,8 +17,6 @@ class CreateSpreeSubscriptions < ActiveRecord::Migration[6.1]
       t.boolean :paused, default: false, null: false, index: true
       t.boolean :next_occurrence_possible, default: true
 
-      t.datetime :deleted_at
-
       t.timestamps null: false
     end
   end

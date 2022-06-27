@@ -13,8 +13,6 @@ class CreateSpreeSubscriptionActions < ActiveRecord::Migration[6.1]
       t.json :state
       t.json :outputs
 
-      t.datetime :deleted_at
-
       t.timestamps
     end
   end
