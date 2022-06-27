@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '3.0.2'
+ruby '2.7.5'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.1.4'
@@ -10,6 +10,7 @@ gem 'pg'
 # Use Puma as the app server
 gem 'puma'
 # Use SCSS for stylesheets
+gem 'sprockets', '~> 3'
 gem 'sass-rails', '>= 6'
 # petty print
 gem 'awesome_print'
@@ -28,7 +29,7 @@ gem 'oj'
 gem 'activerecord-nulldb-adapter'
 
 # bundler
-gem 'bundler', '~>2.2.33'
+gem 'bundler', '~>2.1'
 
 # View overrides
 gem 'deface'
@@ -57,9 +58,6 @@ group :development do
   gem 'flamegraph'
   gem 'stackprof'
   gem 'memory_profiler'
-
-  # spree
-  gem 'spree_dev_tools'
 end
 
 group :test do
@@ -81,23 +79,31 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-# Spree
-spree_opts = '~> 4.4.0'
-gem 'spree', spree_opts
-gem 'spree_emails', spree_opts
-gem 'spree_backend', spree_opts
-gem 'spree_gateway'
-gem 'spree_auth_devise'
-gem 'spree_i18n', '>= 5.0'
+# solidus
+gem 'solidus', '~> 3.1'
 
-# Spree contribs
-gem 'spree_sitemap', github: 'spree-contrib/spree_sitemap'
+# solidus i18n
+gem 'solidus_i18n', github: 'solidusio/solidus_i18n'
+gem 'rails-i18n'
+gem 'kaminari-i18n'
+
+# solidus extensions
+gem 'solidus_auth_devise'
+gem 'solidus_stripe'
+gem "solidus_comments", github: 'solidusio-contrib/solidus_comments'
+gem 'solidus_subscriptions', github: 'solidusio-contrib/solidus_subscriptions'
+gem 'solidus_sitemap', github: 'solidusio-contrib/solidus_sitemap'
+gem 'solidus_print_invoice' , github: 'solidusio-contrib/solidus_print_invoice'
+gem 'solidus_digital', github: 'solidusio-contrib/solidus_digital'
+gem 'solidus_reviews', github: 'solidusio-contrib/solidus_reviews'
+gem 'solidus_wishlist', github: 'boomerdigital/solidus_wishlist'
+gem 'solidus_related_products', github: 'solidusio-contrib/solidus_related_products'
 
 # Drakkar Software's engines
-gem 'spree_donations', github: 'Drakkar-Software/spree_donations', branch: 'master'
-gem 'spree_cloud', github: 'Drakkar-Software/spree_cloud', branch: 'master'
-gem 'spree_feeds', github: 'Drakkar-Software/spree_feeds', branch: 'master'
+# gem 'spree_donations', github: 'Drakkar-Software/spree_donations', branch: 'master'
+# gem 'spree_cloud', github: 'Drakkar-Software/spree_cloud', branch: 'master'
+# gem 'spree_feeds', github: 'Drakkar-Software/spree_feeds', branch: 'master'
 
 # jobs
 gem 'sidekiq'
-gem 'sidekiq-scheduler', '~> 3.1.0'
+gem 'sidekiq-scheduler', '~> 3.2.2'

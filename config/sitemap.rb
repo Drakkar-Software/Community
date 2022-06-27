@@ -1,8 +1,6 @@
-SitemapGenerator::Sitemap.default_host = if Spree::Store.default.url.include? 'https://'
-                                           Spree::Store.default.url
-                                         else
-                                           "https://#{Spree::Store.default.url}"
-                                         end
+# frozen_string_literal: true
+
+SitemapGenerator::Sitemap.default_host = "http://#{Spree::Store.default.url}"
 
 ##
 ## If using Heroku or similar service where you want sitemaps to live in S3 you'll need to setup these settings.
@@ -22,8 +20,6 @@ SitemapGenerator::Sitemap.default_host = if Spree::Store.default.url.include? 'h
 
 ## Pick a namespace within your bucket to organize your maps. Note you'll need to set this directory to be public.
 # SitemapGenerator::Sitemap.sitemaps_path = 'sitemaps/'
-
-# to generate the sitemap: rake sitemap:refresh
 
 SitemapGenerator::Sitemap.create do
   # Put links creation logic here.

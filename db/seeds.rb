@@ -2,25 +2,23 @@
 Spree::Core::Engine.load_seed if defined?(Spree::Core)
 Spree::Auth::Engine.load_seed if defined?(Spree::Auth)
 
-# TODO replace deprecated Spree::Store.current
-current_store = Spree::Store.current
+current_store = Spree::Store.default
 
 # Create frontend mandatory taxonomies
-Spree::Taxonomy.create([{ name: "Categories", store: current_store },
-                        { name: "Brands", store: current_store }])
+Spree::Taxonomy.create([{ name: "Categories" }, { name: "Brands" }])
 
 # Create tentacle product taxon
-taxonomy = Spree::Taxonomy.find_by!(name: "Categories", store: current_store)
+taxonomy = Spree::Taxonomy.find_by!(name: "Categories")
 Spree::Taxon.find_or_create_by!(name: "Tentacle", taxonomy: taxonomy, parent: taxonomy.root)
 
 # Set current store currency
 store_currency = "OBT"
 current_store.default_currency = store_currency
-current_store.supported_currencies_list << store_currency
+# current_store.supported_currencies_list << store_currency
 current_store.save!
 
 # Create default payment method
-if Spree::PaymentMethod::StoreCredit.available.first.nil?
+if Spree::PaymentMethod::StoreCredit.first.nil? # .available
   credits_payment_method = Spree::PaymentMethod::StoreCredit.new(name: 'Store credits',
                                                                  description: 'Store credits',
                                                                  active: true,
@@ -37,7 +35,6 @@ if Spree::Promotion.find_by(name: signup_promotion_name).nil?
   Spree::Promotion.create!(
     {
       name: signup_promotion_name,
-      stores: [current_store],
       promotion_actions: [
         Spree::PromotionAction.new(
           type: Spree::Promotion::Actions::GiveStoreCredit
@@ -52,7 +49,3 @@ if Spree::Promotion.find_by(name: signup_promotion_name).nil?
     }
   )
 end
-
-# Drakkar-Software's engine seeds
-Spree::Cloud::Engine.load_seed if defined?(Spree::Cloud)
-Spree::Donations::Engine.load_seed if defined?(Spree::Donations)

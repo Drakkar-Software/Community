@@ -6,5 +6,6 @@ module Spree::UserDecorator
 
     base.has_many :authored_products, foreign_key: 'author_id', inverse_of: :author, class_name: 'Spree::Product'
   end
+
+  ::Spree.user_class.prepend self
 end
-::Spree.user_class.prepend(Spree::UserDecorator)

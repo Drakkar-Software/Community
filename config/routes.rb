@@ -9,8 +9,6 @@ Rails.application.routes.draw do
   # the default of "spree".
   mount Spree::Core::Engine, at: '/'
 
-  root to: redirect('/404') # redirect / instead of rails welcome
-
   # if Rails.env.production?
   #   Sidekiq::Web.use Rack::Auth::Basic do |username, password|
   #     # Protect against timing attacks:
@@ -22,18 +20,12 @@ Rails.application.routes.draw do
   #       ActiveSupport::SecurityUtils.secure_compare(::Digest::SHA256.hexdigest(password), ::Digest::SHA256.hexdigest(ENV['SIDEKIQ_PASSWORD']))
   #   end
   # end
-
-  # sidekiq web UI
-  require 'sidekiq/web'
-  mount Sidekiq::Web, at: '/admin/sidekiq'
 end
 
-Spree::Core::Engine.add_routes do
+Spree::Core::Engine.routes.draw do
+  root to: redirect('/404'), as: nil
+
   namespace :api, defaults: { format: 'json' } do
-    namespace :v2 do
-      namespace :storefront do
-        post '/products', to: 'products#create', as: :products_create
-      end
-    end
+    post '/products', to: 'products#create', as: :products_create
   end
 end
